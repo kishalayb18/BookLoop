@@ -15,8 +15,8 @@ public class SignupActivity extends AppCompatActivity {
 
     TextView txtSignUpHeading;
     TextInputLayout layName, layEmail, layPwd, layConPwd, layPhn;
-    TextInputEditText inpName, inpEmail, inpPass, inpAge;
-    Button btnRegister;
+    TextInputEditText inpName, inpEmail,inpPhn, inpPass,inpConPass;
+    Button btnSignup;
     DatabaseReference reference;
     //LocalSession session;
 
@@ -32,8 +32,22 @@ public class SignupActivity extends AppCompatActivity {
         layEmail=findViewById(R.id.layout_email);
         layPhn=findViewById(R.id.layout_phone);
         layPwd=findViewById(R.id.edit_password);
-        layConPwd=findViewById(R.id.confirm_password);
+        layConPwd=findViewById(R.id.layout_reenter_pwd);
 
         inpName=findViewById(R.id.user_name);
+        inpEmail=findViewById(R.id.user_mail);
+        inpPhn=findViewById(R.id.user_phone);
+        inpPass=findViewById(R.id.user_password);
+        inpConPass=findViewById(R.id.user_confirm_password);
+
+        btnSignup=findViewById(R.id.btn_signup);
+
+        private void addUser(String email, String password)
+        {
+            mAuth=FirebaseAuth.getInstance();
+
+            mAuth.createUserWithEmailAndPassword(email,password)
+                    .addOnCompleteListener()
+        }
     }
 }
