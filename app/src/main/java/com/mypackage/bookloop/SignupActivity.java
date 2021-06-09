@@ -85,16 +85,21 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void addProfile(String uid, String name, String email, String phn, String password){
-        reference= FirebaseDatabase.getInstance().getReference("BookLoopUserAccount");
+        reference= FirebaseDatabase.getInstance().getReference("BLUserAccount");
         Map<String , String> userJson=new HashMap<>();
         userJson.put("u_name", name);
         userJson.put("u_email", email);
-        userJson.put("u_age", phn);
+        userJson.put("u_phn", phn);
         userJson.put("u_pwd", password);
 
         reference.child(uid).setValue(userJson).addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 Toast.makeText(this, "Success! Verification email sent.",Toast.LENGTH_SHORT).show();
+                //NAVIGATE TO LOGIN AFTER SUCCESSFUL REGISTRATION
+                Intent r = new Intent(SignupActivity.this, Login_Activity.class);
+                startActivity(r);
+                SignupActivity.this.finish();
+
             } else {
                 Toast.makeText(this, "User exists",Toast.LENGTH_SHORT).show();
             }
@@ -102,15 +107,5 @@ public class SignupActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(),Toast.LENGTH_SHORT).show();
         });
     }
-
-    //page connected to login -->swapnil mishra commit
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.Login:
-//                startActivity(new Intent(this,Login_Activity.class));
-//                break;
-//        }
-//    }
 
 }

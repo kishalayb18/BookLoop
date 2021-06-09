@@ -22,6 +22,16 @@ public class Login_Activity extends AppCompatActivity {
             startActivity(r);
             Login_Activity.this.finish();
         });
+
+//        @Override
+//        public void onClick(View v){
+//            switch (v.getId()) {
+//                case R.id.Signup:
+//                    startActivity(new Intent(this, SignupActivity.class));
+//                    break;
+//            }
+//        }
+
     }
 
 
