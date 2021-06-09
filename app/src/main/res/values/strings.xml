@@ -10,4 +10,12 @@
     <string name="enter_full_name">Enter Full Name</string>
     <string name="Already_have_an_account">Already have an account? </string>
     <string name="Login">Login</string>
+    <string name="home">HOME</string>
+    <string name="logout">Logout</string>
+    <string name="your_account">Your Account</string>
+    <string name="search">Search</string>
+    <string name="home_menu">Home</string>
+    <string name="my_profile">My Profile</string>
+    <string name="upload_new">UPLOAD NEW</string>
+    <string name="upload_new_book">Upload new book</string>
 </resources>

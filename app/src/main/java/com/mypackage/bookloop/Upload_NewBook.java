@@ -9,31 +9,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-
+public class Upload_NewBook extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_upload__new_book);
 
-
-
-        getSupportActionBar().setTitle("HOME");
+        getSupportActionBar().setTitle("UPLOAD NEW BOOK");
     }
 
-        /**
-         * adding menu to the app or action bar
-         */
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            //define the menu file
-            getMenuInflater().inflate(R.menu.main_menu, menu);
-            return super.onCreateOptionsMenu(menu);
-        }
+    /**
+     * adding menu to the app or action bar
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //define the menu file
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
     /**
      * method to generate event against the menu
      */
@@ -44,16 +40,20 @@ public class MainActivity extends AppCompatActivity {
             case R.id.Logout:
                 logout();
                 break;
+
+            case R.id.home_menu:
+                Intent route = new Intent(Upload_NewBook.this, MainActivity.class); //message passing object
+                //Toast.makeText(Upload_NewBook.this,"Login successful", Toast.LENGTH_SHORT).show();
+                break;
+
             case R.id.MyProfile:
 
-                Toast.makeText(MainActivity.this,"Login successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Upload_NewBook.this,"Login successful", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Search:
-                Toast.makeText(MainActivity.this,"Login successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Upload_NewBook.this,"Login successful", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.Upload_new_book:
-                Intent route = new Intent(MainActivity.this, Upload_NewBook.class); //message passing object
-                break;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -65,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
          * showing a dialogue to perform a convenient operation to the user
          */
 
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Upload_NewBook.this);
         alertBuilder.setTitle("Exit message");
         alertBuilder.setMessage("Confirm to exit");
         alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //cancel operation
-                Toast.makeText(MainActivity.this,"Operation suspended", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Upload_NewBook.this,"Operation suspended", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         }); //set -ve operation
@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
         alertBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this,"Logout successful", Toast.LENGTH_SHORT).show();
-                MainActivity.this.finish();
+                Toast.makeText(Upload_NewBook.this,"Logout successful", Toast.LENGTH_SHORT).show();
+                Upload_NewBook.this.finish();
 
             }
         });// set +ve operation
@@ -91,7 +91,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
-
-
-
 
