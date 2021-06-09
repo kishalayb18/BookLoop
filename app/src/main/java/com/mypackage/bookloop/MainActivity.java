@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Login successful", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Upload_new_book:
-                Intent route = new Intent(MainActivity.this, Upload_NewBook.class); //message passing object
+                Intent upl = new Intent(MainActivity.this, Upload_NewBook.class);
+                startActivity(upl);//message passing object
                 break;
         }
 
