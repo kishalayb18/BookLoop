@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 public class Login_Activity extends AppCompatActivity {
@@ -18,16 +17,15 @@ public class Login_Activity extends AppCompatActivity {
 
         signUp = findViewById(R.id.Signup);
         signUp.setOnClickListener(v -> {
-            Intent r = new Intent(Login_Activity.this, MainActivity.class);
+            Intent r = new Intent(Login_Activity.this, SignUpActivity.class);
             startActivity(r);
-            Login_Activity.this.finish();
         });
 
 //        @Override
 //        public void onClick(View v){
 //            switch (v.getId()) {
 //                case R.id.Signup:
-//                    startActivity(new Intent(this, SignupActivity.class));
+//                    startActivity(new Intent(this, SignUpActivity.class));
 //                    break;
 //            }
 //        }
