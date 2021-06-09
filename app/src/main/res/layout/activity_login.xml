@@ -76,13 +76,11 @@
 
     <TextView
         android:id="@+id/Signup"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:textSize="21sp"
+        android:layout_height="14dp"
         android:text="@string/signup"
-        android:layout_margin="5dp"
         android:textColor="@color/black"
-        />
+        android:textSize="21sp" />
 
 </LinearLayout>
 

@@ -2,7 +2,9 @@ package com.mypackage.bookloop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,9 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignupActivity extends AppCompatActivity {
-
-    TextView txtSignUpHeading;
+public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
+    TextView txtSignUpHeading, Login;
     TextInputLayout layName, layEmail, layPwd, layConPwd, layPhn;
     TextInputEditText inpName, inpEmail,inpPhn, inpPass,inpConPass;
     Button btnSignup;
@@ -57,6 +58,8 @@ public class SignupActivity extends AppCompatActivity {
             addUser(email, pass, name, phn);
         });
 
+        Login = (TextView) findViewById(R.id.Login);
+        Login.setOnClickListener(this);
 
     }
 
@@ -95,5 +98,15 @@ public class SignupActivity extends AppCompatActivity {
         }).addOnFailureListener(e -> {
             Toast.makeText(this, e.getMessage(),Toast.LENGTH_SHORT).show();
         });
+    }
+
+    //page connected to login -->swapnil mishra commit
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.Login:
+                startActivity(new Intent(this,Login_Activity.class));
+                break;
+        }
     }
 }

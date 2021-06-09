@@ -5,7 +5,9 @@
     <string name="email">Email</string>
     <string name="enter_the_username">Enter User Name</string>
     <string name="enter_password">Enter Password</string>
-    <string name="want_to_create_new_account">Want to Create New Account?</string>
+    <string name="want_to_create_new_account">Want to Create New Account? </string>
     <string name="signup">SignUp</string>
     <string name="enter_full_name">Enter Full Name</string>
+    <string name="Already_have_an_account">Already have an account? </string>
+    <string name="Login">Login</string>
 </resources>
