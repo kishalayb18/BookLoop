@@ -7,24 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class Login_Activity extends AppCompatActivity implements View.OnClickListener{
-    TextView Signup;
+public class Login_Activity extends AppCompatActivity {
+    
+    TextView signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Signup = (TextView) findViewById(R.id.Signup);
-        Signup.setOnClickListener(this);
+        signUp = findViewById(R.id.Signup);
+        signUp.setOnClickListener(v -> {
+            Intent r = new Intent(Login_Activity.this, SignupActivity.class);
+            startActivity(r);
+            Login_Activity.this.finish();
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.Signup:
-                startActivity(new Intent(this,SignupActivity.class));
-                break;
-        }
-    }
+
 }

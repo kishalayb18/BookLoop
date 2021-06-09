@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
+public class SignupActivity extends AppCompatActivity {
     TextView txtSignUpHeading, Login;
     TextInputLayout layName, layEmail, layPwd, layConPwd, layPhn;
     TextInputEditText inpName, inpEmail,inpPhn, inpPass,inpConPass;
@@ -49,17 +49,20 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         btnSignup=findViewById(R.id.btn_signup);
 
+        Login.setOnClickListener(v -> {
+            Intent r = new Intent(SignupActivity.this, Login_Activity.class);
+            startActivity(r);
+            SignupActivity.this.finish();
+        });
+
         btnSignup.setOnClickListener(v -> {
             String name=inpName.getText().toString();
             String email=inpEmail.getText().toString().trim();
             String phn=inpPhn.getText().toString();
             String pass=inpPass.getText().toString().trim();
-
+            Toast.makeText(this, "Signing up",Toast.LENGTH_SHORT).show();
             addUser(email, pass, name, phn);
         });
-
-        Login = (TextView) findViewById(R.id.Login);
-        Login.setOnClickListener(this);
 
     }
 
@@ -101,12 +104,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     //page connected to login -->swapnil mishra commit
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.Login:
-                startActivity(new Intent(this,Login_Activity.class));
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.Login:
+//                startActivity(new Intent(this,Login_Activity.class));
+//                break;
+//        }
+//    }
+
 }

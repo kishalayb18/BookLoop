@@ -8,9 +8,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
+        android:layout_gravity="center"
         android:text="@string/login"
         android:textSize="48sp"
         android:textStyle="bold|italic" />
@@ -56,31 +57,36 @@
 
     <Button
         android:id="@+id/login_btn"
-        android:background="@drawable/btn_shape1"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="@string/login"
-        android:layout_margin="30dp"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/btn_shape1"
+        android:text="@string/login" />
 
 
     -<LinearLayout
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content">
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <TextView android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/New_account"
         android:layout_width="wrap_content"
-        android:textSize="22sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/want_to_create_new_account"
         android:textColor="@color/black"
-        android:id="@+id/New_account"/>
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/Signup"
         android:layout_width="wrap_content"
-        android:layout_height="14dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
         android:text="@string/signup"
         android:textColor="@color/black"
-        android:textSize="21sp" />
+        android:textSize="21sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
 
