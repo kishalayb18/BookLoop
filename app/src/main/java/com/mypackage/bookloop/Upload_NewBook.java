@@ -19,6 +19,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 public class Upload_NewBook extends AppCompatActivity {
+    TextView Uploadbook;
+    Button btn;
+    TextInputLayout BknameInpt, AuthorInpt, PublisherInpt, SemInpt, DescripInpt, PriceInpt;
+    TextInputEditText BknameEdit, AuthorEdit, PublisherEdit, SemEdit, DescripEdit, PriceEdit;
 
     
 
@@ -28,6 +32,22 @@ public class Upload_NewBook extends AppCompatActivity {
         setContentView(R.layout.activity_upload__new_book);
 
         getSupportActionBar().setTitle("UPLOAD NEW BOOK");
+
+        Uploadbook=findViewById(R.id.txt_user);
+        btn=findViewById(R.id.upload_button);
+        BknameInpt=findViewById(R.id.bookname);
+        BknameEdit=findViewById(R.id.bookname_edit);
+        AuthorInpt=findViewById(R.id.Author);
+        AuthorEdit=findViewById(R.id.author_edit);
+        PublisherInpt=findViewById(R.id.publisher);
+        PublisherEdit=findViewById(R.id.publisher_edit);
+        SemInpt=findViewById(R.id.classorsem);
+        SemEdit=findViewById(R.id.classorsem_edit);
+        DescripInpt=findViewById(R.id.description);
+        DescripEdit=findViewById(R.id.description_edit);
+        PriceInpt=findViewById(R.id.Price);
+        PriceEdit=findViewById(R.id.price_edit);
+
     }
 
     /**

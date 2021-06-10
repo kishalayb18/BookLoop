@@ -126,7 +126,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/login_button1"
+        android:id="@+id/upload_button"
         android:layout_width="242dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
