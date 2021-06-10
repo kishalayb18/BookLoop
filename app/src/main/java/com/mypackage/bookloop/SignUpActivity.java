@@ -24,8 +24,8 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputLayout layName, layEmail, layPwd, layConPwd, layPhn;
     TextInputEditText inpName, inpEmail,inpPhn, inpPass,inpConPass;
     Button btnSignUp;
-    DatabaseReference reference;
 
+    DatabaseReference reference;
     FirebaseAuth mAuth;
 
     @Override
@@ -49,19 +49,14 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp=findViewById(R.id.btn_signup);
 
         //NAVIGATION FRON SIGNUP TO LOGIN
-//        txtLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //LOGIC TO NAVIGATE TO SIGN UP SCREEN
-//                Intent r= new Intent(SignUpActivity.this,MainActivity.class); //EXPLICIT INTENT
-//                startActivity(r);
-//            }
-//        });
-
-//        txtLogin.setOnClickListener(v -> {
-//            Intent r=new Intent(SignUpActivity.this, Login_Activity.class);
-//            startActivity(r);
-//        });
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //LOGIC TO NAVIGATE TO SIGN UP SCREEN
+                Intent r= new Intent(SignUpActivity.this,MainActivity.class); //EXPLICIT INTENT
+                startActivity(r);
+            }
+        });
 
         btnSignUp.setOnClickListener(v -> {
             String name=inpName.getText().toString();

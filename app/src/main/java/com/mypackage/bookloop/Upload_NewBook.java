@@ -16,15 +16,18 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Upload_NewBook extends AppCompatActivity {
-    TextView Uploadbook;
-    Button btn;
-    TextInputLayout BknameInpt, AuthorInpt, PublisherInpt, SemInpt, DescripInpt, PriceInpt;
-    TextInputEditText BknameEdit, AuthorEdit, PublisherEdit, SemEdit, DescripEdit, PriceEdit;
+    TextView uploadbook;
+    Button btnUpload;
+    TextInputLayout bknameInpt, authorInpt, publisherInpt, semInpt, descripInpt, priceInpt;
+    TextInputEditText bknameEdit, authorEdit, publisherEdit, semEdit, descripEdit, priceEdit;
 
-    
+    DatabaseReference dataBasereference;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,20 +36,42 @@ public class Upload_NewBook extends AppCompatActivity {
 
         getSupportActionBar().setTitle("UPLOAD NEW BOOK");
 
-        Uploadbook=findViewById(R.id.txt_user);
-        btn=findViewById(R.id.upload_button);
-        BknameInpt=findViewById(R.id.bookname);
-        BknameEdit=findViewById(R.id.bookname_edit);
-        AuthorInpt=findViewById(R.id.Author);
-        AuthorEdit=findViewById(R.id.author_edit);
-        PublisherInpt=findViewById(R.id.publisher);
-        PublisherEdit=findViewById(R.id.publisher_edit);
-        SemInpt=findViewById(R.id.classorsem);
-        SemEdit=findViewById(R.id.classorsem_edit);
-        DescripInpt=findViewById(R.id.description);
-        DescripEdit=findViewById(R.id.description_edit);
-        PriceInpt=findViewById(R.id.Price);
-        PriceEdit=findViewById(R.id.price_edit);
+        uploadbook=findViewById(R.id.txt_user);
+        btnUpload=findViewById(R.id.upload_button);
+        bknameInpt=findViewById(R.id.bookname);
+        bknameEdit=findViewById(R.id.bookname_edit);
+        authorInpt=findViewById(R.id.Author);
+        authorEdit=findViewById(R.id.author_edit);
+        publisherInpt=findViewById(R.id.publisher);
+        publisherEdit=findViewById(R.id.publisher_edit);
+        semInpt=findViewById(R.id.classorsem);
+        semEdit=findViewById(R.id.classorsem_edit);
+        descripInpt=findViewById(R.id.description);
+        descripEdit=findViewById(R.id.description_edit);
+        priceInpt=findViewById(R.id.Price);
+        priceEdit=findViewById(R.id.price_edit);
+
+        //ON CLICKING UPLOAD BUTTON
+        btnUpload.setOnClickListener(v -> {
+            String bookName=bknameEdit.getText().toString();
+            String authorName=authorEdit.getText().toString().trim();
+            String publisherName=publisherEdit.getText().toString();
+            String sem=semEdit.getText().toString().trim();
+            String description=descripEdit.getText().toString().trim();
+            String price=priceEdit.getText().toString().trim();
+            addBook(bookName, authorName, publisherName, sem,description,price);
+            //Toast.makeText(this, "Signing up",Toast.LENGTH_SHORT).show();
+        });
+
+    }
+
+
+    private void addBook(String bookName, String authorName, String publisherName, String sem, String description, String price) {
+        mAuth=FirebaseAuth.getInstance();
+        FirebaseUser user=mAuth.getCurrentUser();
+        String uid=user.getUid();
+        dataBasereference= FirebaseDatabase.getInstance().getReference("BLUserAccount");
+
 
     }
 
