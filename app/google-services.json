@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "279780100775",
-    "project_id": "bookloop-2e3e1",
-    "storage_bucket": "bookloop-2e3e1.appspot.com"
+    "project_number": "994633724495",
+    "project_id": "bookloop-7022d",
+    "storage_bucket": "bookloop-7022d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:279780100775:android:c27311facb45cea153e982",
+        "mobilesdk_app_id": "1:994633724495:android:1856a0c3f3c4bdb5ac303a",
         "android_client_info": {
           "package_name": "com.mypackage.bookloop"
         }
       },
       "oauth_client": [
         {
-          "client_id": "279780100775-gmpfdeac2p17ar1o92ol1r634fsq2fg3.apps.googleusercontent.com",
+          "client_id": "994633724495-noufaitensq7lqunc8mjb5fki1jm8hjv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDCcF5JjLhWN23I55vyqpb0XjlixQhgqlU"
+          "current_key": "AIzaSyA4Koxx7jdRUWHNQVMpr4mSFokBK6ArTZU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "279780100775-gmpfdeac2p17ar1o92ol1r634fsq2fg3.apps.googleusercontent.com",
+              "client_id": "994633724495-noufaitensq7lqunc8mjb5fki1jm8hjv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

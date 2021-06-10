@@ -64,7 +64,68 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void addUser(String email, String password, String name,String phn){
+    public void addUser(String email, String password, String name, String ph)
+    {
+        //ACESS OUR AUTHENTICATION SERVICE
+        mAuth=FirebaseAuth.getInstance();
+
+        //ADD USER IN AUTHENTICATION
+        mAuth.createUserWithEmailAndPassword(email, password)
+                //TO CHECK IF THE DATA HAS ADDED UP SUCCESSFULLY OR NOT
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        //IF & ONLY IF THE EMAIL IS UNIQUE AND FOLLOWS THE PATTERN OF AN EMAIL
+
+                        //THE PROVIDED EMAIL IS EXISTING OR NOT ***VERIFYING THE EMAIL***
+
+                        FirebaseUser user= mAuth.getCurrentUser();    //we are accessing the current user whose account is just created
+                        String uid=user.getUid();   //UNIQUE ID FOR EVERY USER ACCOUNT
+
+                        /**
+                         * TO CHECK IF THE EMAIL IS EXISTING OR NOT
+                         */
+                        user.sendEmailVerification();   //ON VERIFICATION YOU WILL BE ALLOWED TO ACCESS THE APP FURTHER
+                        addProfile(uid,name,email,ph);
+                        Toast.makeText(this,"Email verification sent",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(this,"This email is already used",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                //HELP US TO CHECK ANY FALIURE EXCEPTION TAKING PLACE OR NOT
+                .addOnFailureListener(e -> Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
+                );
+    }
+
+    private void addProfile(String uid, String name, String email, String ph) {
+        //  HERE ALL THE DATA RELEVANT TO THE USER WILL STORED IN THE DATABASE
+        reference= FirebaseDatabase.getInstance().getReference("UserAccount");
+
+        //USER DETAILS IN MAP FORMAT
+        Map<String,String> userJason=new HashMap<>();
+        userJason.put("u_name",name);
+        userJason.put("u_email",email);
+        userJason.put("u_ph",ph);
+
+        //TO ADD THE USER DETAILS
+        reference.child(uid).setValue(userJason)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        Toast.makeText(this,"Registration Successful",Toast.LENGTH_SHORT).show();
+
+                        //ADD CODE TO NAV TO LOGIN SCREEN
+                    }
+                    else {
+                        Toast.makeText(this,"Registration Failed",Toast.LENGTH_SHORT).show();
+                        mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
+                    }
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
+                );
+    }
+
+    /*private void addUser(String email, String password, String name,String phn){
         mAuth=FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
@@ -81,7 +142,9 @@ public class SignUpActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
                 );
+        Toast.makeText(this,"EXIT ADD-USER",Toast.LENGTH_SHORT).show();
     }
+
 
     private void addProfile(String uid, String name, String email, String phn){
         reference= FirebaseDatabase.getInstance().getReference("BLUserAccount");
@@ -89,16 +152,15 @@ public class SignUpActivity extends AppCompatActivity {
         userJson.put("u_name", name);
         userJson.put("u_email", email);
         userJson.put("u_phone", phn);
+        Toast.makeText(this,"ENTER ADD PROFILE 1",Toast.LENGTH_SHORT).show();
 
         reference.child(uid).setValue(userJson)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         Toast.makeText(this,"Registration Successful",Toast.LENGTH_LONG).show();
 
-//                        txtLogin.setOnClickListener(v -> {
-//                            Intent r=new Intent(SignUpActivity.this, Login_Activity.class);
-//                            startActivity(r);
-//                        });
+                            Intent r=new Intent(SignUpActivity.this, Login_Activity.class);
+                            startActivity(r);
                     }
                     else {
                         Toast.makeText(this,"Registration Failed",Toast.LENGTH_SHORT).show();
@@ -108,5 +170,6 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnFailureListener(e ->
                         Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
                 );
-    }
+    }*/
+
 }
