@@ -30,8 +30,8 @@ public class Login_Activity extends AppCompatActivity {
         btnLogin=findViewById(R.id.login_btn);
         signUp = findViewById(R.id.Signup);
         signUp.setOnClickListener(v -> {
-            Intent r = new Intent(Login_Activity.this, SignUpActivity.class);
-            startActivity(r);
+            //Intent r = new Intent(Login_Activity.this, S.class);
+            //startActivity(r);
         });
 
 //        @Override
