@@ -23,10 +23,10 @@ public class Login_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        layEmail=findViewById(R.id.layout_email);
-        layPwd=findViewById(R.id.edit_password);
-        inpEmail=findViewById(R.id.user_mail);
-        inpPass=findViewById(R.id.user_password);
+        layEmail=findViewById(R.id.username_ip_layout);
+        layPwd=findViewById(R.id.inputlayout2);
+        inpEmail=findViewById(R.id.edit_user);
+        inpPass=findViewById(R.id.edit_password);
         btnLogin=findViewById(R.id.login_btn);
         signUp = findViewById(R.id.Signup);
         signUp.setOnClickListener(v -> {
