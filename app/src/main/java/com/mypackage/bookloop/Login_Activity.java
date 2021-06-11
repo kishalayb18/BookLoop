@@ -12,118 +12,116 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class Login_Activity extends AppCompatActivity {
-
+    
+    TextView signUp;
     TextInputLayout layoutUser, layoutPass;
-    public TextInputEditText editUser, editPass;
+    TextInputEditText editUser,editPass;
     Button btnLogin;
-    TextView navTextSignUp;
-    LocalSession session;
-    FirebaseAuth auth;
-
+    //LocalSession session;
+    //FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        auth=FirebaseAuth.getInstance();
+        //auth=FirebaseAuth.getInstance();
 
         layoutUser=findViewById(R.id.username_ip_layout);
         layoutPass=findViewById(R.id.inputlayout2);
         editUser=findViewById(R.id.edit_user);
         editPass=findViewById(R.id.edit_password);
         btnLogin=findViewById(R.id.login_btn);
-        navTextSignUp=findViewById(R.id.Signup);
+        signUp = findViewById(R.id.Signup);
 
         //INITIALIZING THE OBJECT FOR SESSION HANDLING
-        session=new LocalSession(Login_Activity.this);
+        //session=new LocalSession(Login_Activity.this);
 
-        navTextSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //LOGIC TO NAVIGATE TO SIGN UP SCREEN
-                Intent signUp= new Intent(Login_Activity.this,SignUpActivity.class); //EXPLICIT INTENT
-                startActivity(signUp);
-            }
+        //page navigate to sign up
+        signUp.setOnClickListener(v -> {
+            Intent r = new Intent(Login_Activity.this, SignUpActivity.class);
+            startActivity(r);
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email,pwd;
-
-                email=editUser.getText().toString().trim();
-                pwd=editPass.getText().toString().trim();
-
-                layoutUser.setError(null);
-                layoutPass.setError(null);
-
-                //ADD SOME VALIDATIONS
-                if(email.isEmpty())
-                {
-                    layoutUser.setError("Email Field Can't Be Blank");
-                }
-                else if(pwd.isEmpty())
-                {
-                    layoutPass.setError("Password Field Can't Be Blank");
-                }
-                else if(pwd.length()<5)
-                {
-                    layoutPass.setError("Password Should Be Minimum Of 5 Characters");
-                }
-                else
-                {
-                    login(email,pwd);
-
-                }
-
-            }
-        });
-
+//        //button on click activity
+//        btnLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String email,pwd;
+//
+//                email=editUser.getText().toString().trim();
+//                pwd=editPass.getText().toString().trim();
+//
+//                layoutUser.setError(null);
+//                layoutPass.setError(null);
+//
+//                //ADD SOME VALIDATIONS
+//                if(email.isEmpty())
+//                {
+//                    layoutUser.setError("Email Field Can't Be Blank");
+//                }
+//                else if(pwd.isEmpty())
+//                {
+//                    layoutPass.setError("Password Field Can't Be Blank");
+//                }
+//                else if(pwd.length()<5)
+//                {
+//                    layoutPass.setError("Password Should Be Minimum Of 5 Characters");
+//                }
+//                else
+//                {
+//                    login(email,pwd);
+//
+//                }
+//
+//            }
+//        });
     }
 
-    private void login(String email, String password){
-        auth=FirebaseAuth.getInstance();
+//    private void login(String email, String password){
+//        auth=FirebaseAuth.getInstance();
+//
+//        auth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(task -> {
+//                    if(task.isSuccessful())
+//                    {
+//                        //USER IS FOUND
+//                        if( auth.getCurrentUser().isEmailVerified())
+//                        {
+//                            //EMAIL IS VERIFIED
+//
+//
+//
+//                            /**
+//                             * NEED TO WRITE CODE FOR ADDING DATA IN SHARED PREFERENCE
+//                             */
+//                            String uid=auth.getCurrentUser().getUid();  //add it to shared preference
+//                            //session.saveInfo(uid);
+//                            Intent r=new Intent(Login_Activity.this,MainActivity.class);
+//                            startActivity(r);
+//                            Login_Activity.this.finish();
+//
+//                            //WRITE CODE TO NAV TO THE NEXT SCREEN
+//                        }
+//                        else
+//                        {
+//                            //EMAIL IS NOT VERIFIED
+//                            Toast.makeText(this,"VERIFY YOUR MAIL",Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//                    else
+//                    {
+//                        //USER NOT FOUND
+//                        Toast.makeText(this,"USER NOT FOUND",Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .addOnFailureListener(e ->
+//                        Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
+//                );
+//
+//    }
 
-        auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful())
-                    {
-                        //USER IS FOUND
-                        if( auth.getCurrentUser().isEmailVerified())
-                        {
-                            //EMAIL IS VERIFIED
-
-
-
-                            /**
-                             * NEED TO WRITE CODE FOR ADDING DATA IN SHARED PREFERENCE
-                             */
-                            String uid=auth.getCurrentUser().getUid();  //add it to shared preference
-                            session.saveInfo(uid);
-                            Intent r=new Intent(Login_Activity.this,MainActivity.class);
-                            startActivity(r);
-                            Login_Activity.this.finish();
-
-                            //WRITE CODE TO NAV TO THE NEXT SCREEN
-                        }
-                        else
-                        {
-                            //EMAIL IS NOT VERIFIED
-                            Toast.makeText(this,"VERIFY YOUR MAIL",Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                    else
-                    {
-                        //USER NOT FOUND
-                        Toast.makeText(this,"USER NOT FOUND",Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
-                );
-
-    }
 }
