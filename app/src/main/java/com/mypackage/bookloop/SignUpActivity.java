@@ -92,10 +92,11 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void addProfile(String uid, String name, String email, String phn){
         reference= FirebaseDatabase.getInstance().getReference("BLUserAccount");
+
         Map<String , String> userJson=new HashMap<>();
-        userJson.put("u_name", name);
-        userJson.put("u_email", email);
-        userJson.put("u_phone", phn);
+        userJson.put(ConstantKeys.KEY_NAME, name);
+        userJson.put(ConstantKeys.KEY_EMAIL, email);
+        userJson.put(ConstantKeys.KEY_PHONE, phn);
 
         reference.child(uid).setValue(userJson)
                 .addOnCompleteListener(task -> {

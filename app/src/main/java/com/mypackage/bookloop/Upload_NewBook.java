@@ -20,14 +20,21 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Upload_NewBook extends AppCompatActivity {
     TextView uploadbook;
     Button btnUpload;
     TextInputLayout bknameInpt, authorInpt, publisherInpt, semInpt, descripInpt, priceInpt;
     TextInputEditText bknameEdit, authorEdit, publisherEdit, semEdit, descripEdit, priceEdit;
 
-    DatabaseReference dataBasereference;
+    DatabaseReference node;
     FirebaseAuth mAuth;
+    FirebaseDatabase db;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +74,46 @@ public class Upload_NewBook extends AppCompatActivity {
 
 
     private void addBook(String bookName, String authorName, String publisherName, String sem, String description, String price) {
+        db=FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();
-        FirebaseUser user=mAuth.getCurrentUser();
+        user=mAuth.getCurrentUser();
         String uid=user.getUid();
-        dataBasereference= FirebaseDatabase.getInstance().getReference("BLUserAccount");
+
+        String sellerName;
+
+        Map<String , String> bookJson=new HashMap<>();
+        bookJson.put(ConstantKeys.KEY_NAME, bookName);
+        bookJson.put(ConstantKeys.KEY_EMAIL, authorName);
+        bookJson.put(ConstantKeys.KEY_PHONE, publisherName);
+        bookJson.put(ConstantKeys.KEY_NAME, sem);
+        bookJson.put(ConstantKeys.KEY_EMAIL, description);
+        bookJson.put(ConstantKeys.KEY_PHONE, price);
+
+        Calendar calendar=Calendar.getInstance();
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yy HH:mm");
+        String timeStamp=sdf.format(calendar.getTime());
+
+        String bookId=uid+timeStamp;
+
+        node= db.getReference("UploadedBooks");
+
+        node.child(bookId).setValue(bookJson)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        Toast.makeText(this,"BOOK UPLOADED",Toast.LENGTH_LONG).show();
+
+                        //NAVIGATING SIGNUP TO LOGIN AFTER SUCCESSFUL REGISTRATION
+                        Intent r=new Intent(Upload_NewBook.this, MainActivity.class);
+                        startActivity(r);
+                    }
+                    else {
+                        Toast.makeText(this,"Registration Failed",Toast.LENGTH_SHORT).show();
+                        mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
+                    }
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
+                );
 
 
     }
