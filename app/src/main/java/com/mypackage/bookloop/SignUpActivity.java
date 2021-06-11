@@ -36,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+
         layoutName=findViewById(R.id.layout_user_name);
         layoutMail=findViewById(R.id.layout_email);
         layoutPhone=findViewById(R.id.layout_phone);
@@ -55,8 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //LOGIC TO NAVIGATE TO SIGN UP SCREEN
-                Intent l= new Intent(SignUpActivity.this,Login_Activity.class); //EXPLICIT INTENT
-                startActivity(l);
+                Intent r = new Intent(SignUpActivity.this, Login_Activity.class); //EXPLICIT INTENT
+                startActivity(r);
             }
         });
 
@@ -109,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
                     //Toast.makeText(SignUpActivity.this,"REGISTRATION SUCCESSFULL\n\nNAME: "+name+"\nEmail: "+mail+"\nPhone: "+phone,Toast.LENGTH_SHORT).show();
 
                     addUser(mail,pwd1,name,phone);
-                    Intent route= new Intent(SignUpActivity.this,MainActivity.class); //EXPLICIT INTENT
+                    Intent route= new Intent(SignUpActivity.this,Login_Activity.class); //EXPLICIT INTENT
                     startActivity(route);
                 }
             }
