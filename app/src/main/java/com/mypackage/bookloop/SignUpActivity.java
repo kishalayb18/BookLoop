@@ -82,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(this, "Verification email sent.",Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(this,"This email is already used",Toast.LENGTH_SHORT).show();
-                        mAuth.getCurrentUser().delete();
+                        //mAuth.getCurrentUser().delete();
                     }
                 })
                 .addOnFailureListener(e -> Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()

@@ -79,7 +79,8 @@ public class Upload_NewBook extends AppCompatActivity {
         user=mAuth.getCurrentUser();
         String uid=user.getUid();
 
-        String sellerName;
+        String sellerName=user.getDisplayName();
+        String sellerContact;
 
         Map<String , String> bookJson=new HashMap<>();
         bookJson.put(ConstantKeys.KEY_NAME, bookName);
@@ -107,7 +108,7 @@ public class Upload_NewBook extends AppCompatActivity {
                         startActivity(r);
                     }
                     else {
-                        Toast.makeText(this,"Registration Failed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,"Upload Failed",Toast.LENGTH_SHORT).show();
                         mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
                     }
                 })
