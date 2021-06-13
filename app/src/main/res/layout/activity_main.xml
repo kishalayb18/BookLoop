@@ -16,7 +16,7 @@
         android:textColor="@color/purple_200"
         android:id="@+id/txt_user"/>
     
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_listing"
         android:name="com.mypackage.bookloop.ListingFragment"
         android:layout_height="match_parent"

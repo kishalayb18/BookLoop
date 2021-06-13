@@ -107,6 +107,7 @@ public class Upload_NewBook extends AppCompatActivity {
         user=mAuth.getCurrentUser();
         String uid=user.getUid();
 
+
         Map<String , String> bookJson=new HashMap<>();
         bookJson.put(ConstantKeys.KEY_BOOK_NAME, bookName);
         bookJson.put(ConstantKeys.KEY_AUTHOR_NAME, authorName);
