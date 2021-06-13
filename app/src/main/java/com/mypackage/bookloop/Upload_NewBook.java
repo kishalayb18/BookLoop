@@ -31,10 +31,14 @@ public class Upload_NewBook extends AppCompatActivity {
     TextInputLayout bknameInpt, authorInpt, publisherInpt, semInpt, descripInpt, priceInpt;
     TextInputEditText bknameEdit, authorEdit, publisherEdit, semEdit, descripEdit, priceEdit;
 
-    DatabaseReference node;
+    LocalSession session;
+
+    DatabaseReference node, reference;
     FirebaseAuth mAuth;
     FirebaseDatabase db;
     FirebaseUser user;
+
+    String sellerName,sellerContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,9 @@ public class Upload_NewBook extends AppCompatActivity {
         priceInpt=findViewById(R.id.Price);
         priceEdit=findViewById(R.id.price_edit);
 
+        session=new LocalSession(Upload_NewBook.this);
+        //String sellerName=session.getInfo(ConstantKeys.KEY_NAME);
+
         //ON CLICKING UPLOAD BUTTON
         btnUpload.setOnClickListener(v -> {
             String bookName=bknameEdit.getText().toString();
@@ -78,17 +85,16 @@ public class Upload_NewBook extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         String uid=user.getUid();
-
-        String sellerName=user.getDisplayName();
-        String sellerContact;
+        reference=mAuth.getR
 
         Map<String , String> bookJson=new HashMap<>();
-        bookJson.put(ConstantKeys.KEY_NAME, bookName);
-        bookJson.put(ConstantKeys.KEY_EMAIL, authorName);
-        bookJson.put(ConstantKeys.KEY_PHONE, publisherName);
-        bookJson.put(ConstantKeys.KEY_NAME, sem);
-        bookJson.put(ConstantKeys.KEY_EMAIL, description);
-        bookJson.put(ConstantKeys.KEY_PHONE, price);
+        bookJson.put(ConstantKeys.KEY_BOOK_NAME, bookName);
+        bookJson.put(ConstantKeys.KEY_AUTHOR_NAME, authorName);
+        bookJson.put(ConstantKeys.KEY_PUBLISHER_NAME, publisherName);
+        bookJson.put(ConstantKeys.KEY_SEM, sem);
+        bookJson.put(ConstantKeys.KEY_BOOK_DESCRIPTION, description);
+        bookJson.put(ConstantKeys.KEY_BOOK_PRICE, price);
+        //bookJson.put(ConstantKeys.SELLER_NAME, sellerName);
 
         Calendar calendar=Calendar.getInstance();
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yy HH:mm");

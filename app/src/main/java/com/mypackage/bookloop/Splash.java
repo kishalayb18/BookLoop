@@ -43,7 +43,7 @@ public class Splash extends AppCompatActivity {
                         else
                         {
                             //NO CURRENT USER FOUND
-                            Intent intent=new Intent(Splash.this,MainActivity.class);//defining the intent
+                            Intent intent=new Intent(Splash.this,Login_Activity.class);//defining the intent
                             startActivity(intent);//routing to a new activity
                         }
                         Splash.this.finish();
