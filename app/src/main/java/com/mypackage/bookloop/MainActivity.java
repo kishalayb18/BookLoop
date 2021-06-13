@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //cancel operation
+
                 Toast.makeText(MainActivity.this,"Operation suspended", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
@@ -76,14 +77,16 @@ public class MainActivity extends AppCompatActivity {
         alertBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                LocalSession localSession = new LocalSession(MainActivity.this);
+                localSession.clearAll();
+                Intent r = new Intent(MainActivity.this, Login_Activity.class);
+                startActivity(r);//message passing object
                 Toast.makeText(MainActivity.this,"Logout successful", Toast.LENGTH_SHORT).show();
                 MainActivity.this.finish();
-
             }
         });// set +ve operation
         alertBuilder.setCancelable(false); //auto cancel suspended
         alertBuilder.show();
-
 
     }
 }

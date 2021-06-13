@@ -17,8 +17,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -33,12 +36,10 @@ public class Upload_NewBook extends AppCompatActivity {
 
     LocalSession session;
 
-    DatabaseReference node, reference;
+    DatabaseReference node, ref;
     FirebaseAuth mAuth;
     FirebaseDatabase db;
     FirebaseUser user;
-
-    String sellerName,sellerContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,11 @@ public class Upload_NewBook extends AppCompatActivity {
         setContentView(R.layout.activity_upload__new_book);
 
         getSupportActionBar().setTitle("UPLOAD NEW BOOK");
+
+        db=FirebaseDatabase.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
+        String uid=user.getUid();
 
         uploadbook=findViewById(R.id.txt_user);
         btnUpload=findViewById(R.id.upload_button);
@@ -73,19 +79,33 @@ public class Upload_NewBook extends AppCompatActivity {
             String sem=semEdit.getText().toString().trim();
             String description=descripEdit.getText().toString().trim();
             String price=priceEdit.getText().toString().trim();
-            addBook(bookName, authorName, publisherName, sem,description,price);
-            //Toast.makeText(this, "Signing up",Toast.LENGTH_SHORT).show();
-        });
 
+            ref=db.getReference("BLUserAccount").getRef().child(mAuth.getCurrentUser().getUid());
+
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String sn=snapshot.child(ConstantKeys.KEY_NAME).getValue().toString();
+                    String sc=snapshot.child(ConstantKeys.KEY_PHONE).getValue().toString();
+                    addBook(bookName, authorName, publisherName, sem,description,price,sn,sc);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        });
     }
 
 
-    private void addBook(String bookName, String authorName, String publisherName, String sem, String description, String price) {
+    private void addBook(String bookName, String authorName, String publisherName, String sem, String description, String price, String sellerName,String sellerPhone) {
+
         db=FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         String uid=user.getUid();
-        //reference=mAuth.getR
 
         Map<String , String> bookJson=new HashMap<>();
         bookJson.put(ConstantKeys.KEY_BOOK_NAME, bookName);
@@ -94,7 +114,8 @@ public class Upload_NewBook extends AppCompatActivity {
         bookJson.put(ConstantKeys.KEY_SEM, sem);
         bookJson.put(ConstantKeys.KEY_BOOK_DESCRIPTION, description);
         bookJson.put(ConstantKeys.KEY_BOOK_PRICE, price);
-        //bookJson.put(ConstantKeys.SELLER_NAME, sellerName);
+        bookJson.put(ConstantKeys.SELLER_NAME, sellerName);
+        bookJson.put(ConstantKeys.SELLER_PHONE, sellerPhone);
 
         Calendar calendar=Calendar.getInstance();
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yy HH:mm");
@@ -121,8 +142,6 @@ public class Upload_NewBook extends AppCompatActivity {
                 .addOnFailureListener(e ->
                         Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
                 );
-
-
     }
 
     /**
@@ -152,13 +171,12 @@ public class Upload_NewBook extends AppCompatActivity {
                 break;
 
             case R.id.MyProfile:
-
                 Toast.makeText(Upload_NewBook.this,"Login successful", Toast.LENGTH_SHORT).show();
                 break;
+
             case R.id.Search:
                 Toast.makeText(Upload_NewBook.this,"Login successful", Toast.LENGTH_SHORT).show();
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -187,13 +205,10 @@ public class Upload_NewBook extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(Upload_NewBook.this,"Logout successful", Toast.LENGTH_SHORT).show();
                 Upload_NewBook.this.finish();
-
             }
         });// set +ve operation
+
         alertBuilder.setCancelable(false); //auto cancel suspended
         alertBuilder.show();
-
-
     }
 }
-
