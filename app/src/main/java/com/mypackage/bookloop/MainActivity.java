@@ -61,11 +61,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        //perform operation for logging out
-        /**
-         * showing a dialogue to perform a convenient operation to the user
-         */
-
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         alertBuilder.setTitle("Exit message");
         alertBuilder.setMessage("Confirm to exit");

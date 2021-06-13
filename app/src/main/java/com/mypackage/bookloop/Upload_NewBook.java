@@ -85,7 +85,7 @@ public class Upload_NewBook extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         String uid=user.getUid();
-        reference=mAuth.getR
+        //reference=mAuth.getR
 
         Map<String , String> bookJson=new HashMap<>();
         bookJson.put(ConstantKeys.KEY_BOOK_NAME, bookName);
