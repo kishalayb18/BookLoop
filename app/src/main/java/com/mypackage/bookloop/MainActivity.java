@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 logout();
                 break;
             case R.id.MyProfile:
-
-                Toast.makeText(MainActivity.this,"Login successful", Toast.LENGTH_SHORT).show();
+                Intent mp = new Intent(MainActivity.this, Myprofile.class);
+                startActivity(mp);//message passing object
                 break;
             case R.id.Search:
                 Toast.makeText(MainActivity.this,"Login successful", Toast.LENGTH_SHORT).show();

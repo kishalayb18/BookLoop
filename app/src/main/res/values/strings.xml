@@ -20,4 +20,7 @@
     <string name="upload_new_book">Upload new book</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Update">Update Details</string>
+    <string name="Backtodashboard">Back to Dashboard</string>
+    <string name="edit_full_name">Edit full name</string>
 </resources>
