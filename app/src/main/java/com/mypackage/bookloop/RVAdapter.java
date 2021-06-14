@@ -42,6 +42,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
         //code to display the respective details
         Contacts contact= contactsList.get(position);
         holder.uiText.setText(contact.getName());
+        holder.uiText2.setText(contact.getName2());
 
 
     }
@@ -56,6 +57,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
     public class UI extends RecyclerView.ViewHolder {
         private CardView cardView;
         private TextView uiText;
+        private TextView uiText2;
 
         public UI(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +65,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
             //mapping
             cardView=itemView.findViewById(R.id.ui_card);
             uiText=itemView.findViewById(R.id.ui_seller_details);
+            uiText2=itemView.findViewById(R.id.ui_book_name);
 
 
 

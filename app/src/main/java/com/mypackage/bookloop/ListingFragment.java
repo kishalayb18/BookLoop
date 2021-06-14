@@ -52,18 +52,22 @@ public class ListingFragment extends Fragment {
     private void addDatatoList() {
         contacts=new Contacts();
         contacts.setName("Rohit");
+        contacts.setName2("Java(Rs 150)");
         dataSource.add(contacts); //adding to list
 
         contacts=new Contacts();
         contacts.setName("Bunty");
+        contacts.setName2("Java(Rs 150)");
         dataSource.add(contacts); //adding to list
 
         contacts=new Contacts();
         contacts.setName("Swapnil");
+        contacts.setName2("Java(Rs 150)");
         dataSource.add(contacts); //adding to list
 
-        Contacts contacts=new Contacts();
+        contacts=new Contacts();
         contacts.setName("Shiwangi");
+        contacts.setName2("Java(Rs 150)");
         dataSource.add(contacts); //adding to list
 
 
