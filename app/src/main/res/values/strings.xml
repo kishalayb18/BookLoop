@@ -23,4 +23,6 @@
     <string name="Update">Update Details</string>
     <string name="Backtodashboard">Back to Dashboard</string>
     <string name="edit_full_name">Edit full name</string>
+    <string name="Backtomenu">Back to menu</string>
+    <string name="changepass">Change Password</string>
 </resources>

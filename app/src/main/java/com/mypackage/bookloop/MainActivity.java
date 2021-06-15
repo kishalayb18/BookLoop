@@ -1,25 +1,26 @@
 package com.mypackage.bookloop;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
-
-
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        auth=FirebaseAuth.getInstance();
         getSupportActionBar().setTitle("HOME");
     }
 
@@ -40,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 logout();
                 break;
             case R.id.MyProfile:
-                Intent mp = new Intent(MainActivity.this, Myprofile.class);
+                Intent mp = new Intent(MainActivity.this, UserProfileActivity.class);
+                mp.putExtra("email",auth.getCurrentUser().getEmail());
+                mp.putExtra("name",auth.getCurrentUser().getDisplayName());
+                mp.putExtra("phone",auth.getCurrentUser().getPhoneNumber());
                 startActivity(mp);//message passing object
                 break;
             case R.id.Search:
