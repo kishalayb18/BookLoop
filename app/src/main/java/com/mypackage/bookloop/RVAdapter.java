@@ -39,8 +39,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
     public void onBindViewHolder(@NonNull RVAdapter.UI holder, int position) {
 
         BookListModel bookListModel= bookList.get(position);
-        holder.bookName.setText(bookListModel.getBookName());
-        holder.sellerName.setText(bookListModel.getSellerName());
+        holder.bookName.setText("Book Name: "+bookListModel.getBookName());
+        holder.sellerName.setText("Seller Name: "+bookListModel.getSellerName());
     }
 
     @Override
