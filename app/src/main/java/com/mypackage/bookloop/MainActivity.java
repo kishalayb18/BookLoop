@@ -20,23 +20,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         getSupportActionBar().setTitle("HOME");
     }
 
-        /**
-         * adding menu to the app or action bar
-         */
+         //adding menu to the app or action bar
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
             //define the menu file
             getMenuInflater().inflate(R.menu.main_menu, menu);
             return super.onCreateOptionsMenu(menu);
         }
-    /**
-     * method to generate event against the menu
-     */
+
+     //method to generate event against the menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) //allow us to use the id against the menu itself
@@ -64,15 +59,15 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         alertBuilder.setTitle("Exit message");
         alertBuilder.setMessage("Confirm to exit");
+
         alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //cancel operation
-
                 Toast.makeText(MainActivity.this,"Operation suspended", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
-        }); //set -ve operation
+        });
 
         alertBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
             @Override
@@ -84,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Logout successful", Toast.LENGTH_SHORT).show();
                 MainActivity.this.finish();
             }
-        });// set +ve operation
+        });
         alertBuilder.setCancelable(false); //auto cancel suspended
         alertBuilder.show();
 

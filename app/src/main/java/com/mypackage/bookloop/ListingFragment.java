@@ -2,6 +2,7 @@ package com.mypackage.bookloop;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,60 +25,43 @@ import java.util.List;
 public class ListingFragment extends Fragment {
 
     private ListingFragment listingFragment;
-    private RecyclerView recyclerView_list;
 
-    private List<Contacts> dataSource =new ArrayList<>(); //declaring a list
-    Contacts contacts=new Contacts();
+    BookListModel bookListModel=new BookListModel();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View root= inflater.inflate(R.layout.fragment_listing, container, false);
-        recyclerView_list=root.findViewById(R.id.recycler_list);
-
-        addDatatoList();
-
-        /*Code to set the arrangement of listing items
-        * using linear format*/
-
+        RecyclerView recyclerView = root.findViewById(R.id.recycler_list);
+        recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false); //defining layout of linear manager
-        recyclerView_list.setLayoutManager(layoutManager); //allow to set layout for recycler view
+        recyclerView.setLayoutManager(layoutManager); //allow to set layout for recycler view
 
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UploadedBooks");
 
-        /* Establishing link between view and adapter*/
+        List<BookListModel> dataList = new ArrayList<>();
 
-        RVAdapter adapter=new RVAdapter(getContext(),dataSource);   //creating object of adapter
-        //code to use the adapter for establishing link
-        recyclerView_list.setAdapter(adapter);
+        RVAdapter adapter = new RVAdapter(getContext(), dataList);   //creating object of adapter
+        recyclerView.setAdapter(adapter);
 
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    BookListModel bookListModel=dataSnapshot.getValue(BookListModel.class);
+                    dataList.add(bookListModel);
+                }
+                adapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return root;
     }
 
-    private void addDatatoList() {
-        contacts=new Contacts();
-        contacts.setName("Rohit");
-        contacts.setName2("Java(Rs 150)");
-        dataSource.add(contacts); //adding to list
-
-        contacts=new Contacts();
-        contacts.setName("Bunty");
-        contacts.setName2("Java(Rs 150)");
-        dataSource.add(contacts); //adding to list
-
-        contacts=new Contacts();
-        contacts.setName("Swapnil");
-        contacts.setName2("Java(Rs 150)");
-        dataSource.add(contacts); //adding to list
-
-        contacts=new Contacts();
-        contacts.setName("Shiwangi");
-        contacts.setName2("Java(Rs 150)");
-        dataSource.add(contacts); //adding to list
-
-
-
-    }
 }
