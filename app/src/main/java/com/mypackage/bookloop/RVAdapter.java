@@ -1,6 +1,7 @@
 package com.mypackage.bookloop;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,20 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
         BookListModel bookListModel= bookList.get(position);
         holder.bookName.setText("Book Name: "+bookListModel.getBookName());
         holder.sellerName.setText("Seller Name: "+bookListModel.getSellerName());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent=new Intent(mContext, BookDetails.class);
+            intent.putExtra(ConstantKeys.KEY_AUTHOR_NAME, bookListModel.getAuthorName());
+            intent.putExtra(ConstantKeys.KEY_BOOK_DESCRIPTION, bookListModel.getBookDescription());
+            intent.putExtra(ConstantKeys.KEY_BOOK_NAME, bookListModel.getBookName());
+            intent.putExtra(ConstantKeys.KEY_BOOK_PRICE, bookListModel.getBookPrice());
+            intent.putExtra(ConstantKeys.KEY_PUBLISHER_NAME, bookListModel.getPublisherName());
+            intent.putExtra(ConstantKeys.SELLER_NAME, bookListModel.getSellerName());
+            intent.putExtra(ConstantKeys.SELLER_PHONE, bookListModel.getSellerPhone());
+            intent.putExtra(ConstantKeys.KEY_SEM, bookListModel.getSem());
+
+            mContext.startActivity(intent);
+        });
     }
 
     @Override

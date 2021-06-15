@@ -3,8 +3,7 @@ package com.mypackage.bookloop;
 public class BookListModel
 {
 
-    private String sellerName,bookName,publisherName,authorName,bookSem,bookDescription,bookPrice;
-    //private String ;
+    private String authorName,bookDescription,bookName,bookPrice,publisherName,sellerName,sellerPhone,sem;
 
     public BookListModel() {
     }
@@ -14,69 +13,78 @@ public class BookListModel
         this.bookName = bookName;
     }
 
-    public BookListModel(String sellerName, String bookName, String publisherName, String authorName, String bookSem, String bookDescription, String bookPrice) {
-        this.sellerName = sellerName;
-        this.bookName = bookName;
-        this.publisherName = publisherName;
+    public BookListModel(String authorName, String bookDescription, String bookName, String bookPrice, String publisherName, String sellerName, String sellerPhone, String sem) {
         this.authorName = authorName;
-        this.bookSem = bookSem;
         this.bookDescription = bookDescription;
+        this.bookName = bookName;
         this.bookPrice = bookPrice;
-    }
-
-    public String getSellerName() {
-        return sellerName;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public String getPublisherName() {
-        return publisherName;
+        this.publisherName = publisherName;
+        this.sellerName = sellerName;
+        this.sellerPhone = sellerPhone;
+        this.sem = sem;
     }
 
     public String getAuthorName() {
         return authorName;
     }
 
-    public String getBookSem() {
-        return bookSem;
-    }
-
     public String getBookDescription() {
         return bookDescription;
+    }
+
+    public String getBookName() {
+        return bookName;
     }
 
     public String getBookPrice() {
         return bookPrice;
     }
 
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
+    public String getPublisherName() {
+        return publisherName;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public String getSellerName() {
+        return sellerName;
     }
 
-    public void setPublisherName(String publisherName) {
-        this.publisherName = publisherName;
+    public String getSellerPhone() {
+        return sellerPhone;
+    }
+
+    public String getSem() {
+        return sem;
     }
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
 
-    public void setBookSem(String bookSem) {
-        this.bookSem = bookSem;
-    }
-
     public void setBookDescription(String bookDescription) {
         this.bookDescription = bookDescription;
     }
 
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
     public void setBookPrice(String bookPrice) {
         this.bookPrice = bookPrice;
+    }
+
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public void setSellerPhone(String sellerPhone) {
+        this.sellerPhone = sellerPhone;
+    }
+
+    public void setSem(String sem) {
+        this.sem = sem;
     }
 }
