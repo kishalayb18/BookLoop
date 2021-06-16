@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             //define the menu file
             getMenuInflater().inflate(R.menu.main_menu, menu);
             return super.onCreateOptionsMenu(menu);
+
         }
 
      //method to generate event against the menu

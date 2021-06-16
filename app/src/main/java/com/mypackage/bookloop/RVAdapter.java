@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,16 +16,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Filterable {
 
     Context mContext;
-    private List<BookListModel> bookList;
+    private List<BookListModel> bookListFull;
+    private List<BookListModel> bookListSearched;
 
     public RVAdapter(Context mContext, List<BookListModel> bookList) {
         this.mContext = mContext;
-        this.bookList = bookList;
+        this.bookListFull = bookList;
+        this.bookListSearched=new ArrayList<>(bookList);
     }
 
     @NonNull
@@ -39,7 +44,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
     @Override
     public void onBindViewHolder(@NonNull RVAdapter.UI holder, int position) {
 
-        BookListModel bookListModel= bookList.get(position);
+        BookListModel bookListModel= bookListFull.get(position);
         holder.bookName.setText("Book Name: "+bookListModel.getBookName());
         holder.sellerName.setText("Seller Name: "+bookListModel.getSellerName());
 
@@ -60,8 +65,53 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
 
     @Override
     public int getItemCount() {
-        return bookList.size();
+        return bookListFull.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return bookFilter;
+    }
+
+    private final Filter bookFilter=new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            ArrayList<BookListModel> filteredOutBookList= new ArrayList<>();
+
+            if(constraint==null||constraint.length()==0)
+            {
+                filteredOutBookList.addAll(bookListFull);
+            }
+            else
+            {
+                String searchKey=constraint.toString().toLowerCase().trim();
+
+                for(BookListModel book:bookListFull)
+                {
+                    if(book.getBookName().toLowerCase().contains(searchKey))
+                    {
+                        filteredOutBookList.add(book);
+                    }
+                }
+            }
+
+            FilterResults results= new FilterResults();
+            results.values=filteredOutBookList;
+            results.count=filteredOutBookList.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            bookListSearched.clear();
+            bookListSearched.addAll((ArrayList)results.values);
+            notifyDataSetChanged();
+
+        }
+    };
+
 
     public class UI extends RecyclerView.ViewHolder {
 
