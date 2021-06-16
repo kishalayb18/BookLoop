@@ -12,6 +12,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
@@ -19,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        auth=FirebaseAuth.getInstance();
         getSupportActionBar().setTitle("HOME");
     }
 
@@ -42,11 +42,9 @@ public class MainActivity extends AppCompatActivity {
                 logout();
                 break;
             case R.id.MyProfile:
-                Intent mp = new Intent(MainActivity.this, UserProfileActivity.class);
-                mp.putExtra("email",auth.getCurrentUser().getEmail());
-                mp.putExtra("name",auth.getCurrentUser().getDisplayName());
-                mp.putExtra("phone",auth.getCurrentUser().getPhoneNumber());
-                startActivity(mp);//message passing object
+                Intent mp = new Intent(MainActivity.this, MyProfileActivity.class);
+                //mp.putExtra("Uemail", auth.getCurrentUser().getEmail());
+                startActivity(mp);
                 break;
             case R.id.Search:
                 Toast.makeText(MainActivity.this,"Login successful", Toast.LENGTH_SHORT).show();
