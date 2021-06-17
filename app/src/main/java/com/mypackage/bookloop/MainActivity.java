@@ -10,18 +10,65 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
+    RecyclerView recyclerView;
+    DatabaseReference database;
+    RVAdapter rvAdapter;
+    List<BookListModel> bookListModelList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("HOME");
+
+        //RecyclerView start
+
+        recyclerView =findViewById(R.id.recycler_list);
+        database= FirebaseDatabase.getInstance().getReference("UploadedBooks");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        bookListModelList= new ArrayList<BookListModel>();
+        rvAdapter=new RVAdapter(this,bookListModelList);
+        recyclerView.setAdapter(rvAdapter);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                bookListModelList.clear();
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+                    BookListModel bookListModel=dataSnapshot.getValue(BookListModel.class);
+                    bookListModelList.add(bookListModel);
+                }
+                rvAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        //RecyclerViewEnd
     }
 
          //adding menu to the app or action bar
