@@ -87,7 +87,8 @@ public class Upload_NewBook extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String sn=snapshot.child(ConstantKeys.KEY_NAME).getValue().toString();
                     String sc=snapshot.child(ConstantKeys.KEY_PHONE).getValue().toString();
-                    addBook(bookName, authorName, publisherName, sem,description,price,sn,sc);
+                    String mail=snapshot.child(ConstantKeys.KEY_EMAIL).getValue().toString();
+                    addBook(bookName, authorName, publisherName, sem,description,price,sn,sc,mail);
                 }
 
                 @Override
@@ -100,7 +101,7 @@ public class Upload_NewBook extends AppCompatActivity {
     }
 
 
-    private void addBook(String bookName, String authorName, String publisherName, String sem, String description, String price, String sellerName,String sellerPhone) {
+    private void addBook(String bookName, String authorName, String publisherName, String sem, String description, String price, String sellerName,String sellerPhone,String sellerEmail) {
 
         db=FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();
@@ -117,6 +118,8 @@ public class Upload_NewBook extends AppCompatActivity {
         bookJson.put(ConstantKeys.KEY_BOOK_PRICE, price);
         bookJson.put(ConstantKeys.SELLER_NAME, sellerName);
         bookJson.put(ConstantKeys.SELLER_PHONE, sellerPhone);
+        bookJson.put(ConstantKeys.SELLER_PHONE, sellerPhone);
+        bookJson.put(ConstantKeys.SELLER_EMAIL,sellerEmail);
 
         Calendar calendar=Calendar.getInstance();
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yy HH:mm");
