@@ -3,7 +3,7 @@ package com.mypackage.bookloop;
 public class BookListModel
 {
 
-    private String authorName,bookDescription,bookName,bookPrice,publisherName,sellerName,sellerPhone,sem;
+    private String authorName,bookDescription,bookName,bookPrice,publisherName,sellerName,sellerPhone,sem,sellerEmail;
 
     public BookListModel() {
     }
@@ -13,7 +13,7 @@ public class BookListModel
         this.bookName = bookName;
     }
 
-    public BookListModel(String authorName, String bookDescription, String bookName, String bookPrice, String publisherName, String sellerName, String sellerPhone, String sem) {
+    public BookListModel(String authorName, String bookDescription, String bookName, String bookPrice, String publisherName, String sellerName, String sellerPhone, String sem,String sellerEmail) {
         this.authorName = authorName;
         this.bookDescription = bookDescription;
         this.bookName = bookName;
@@ -22,6 +22,7 @@ public class BookListModel
         this.sellerName = sellerName;
         this.sellerPhone = sellerPhone;
         this.sem = sem;
+        this.sellerEmail=sellerEmail;
     }
 
     public String getAuthorName() {
@@ -56,6 +57,10 @@ public class BookListModel
         return sem;
     }
 
+    public String getSellerEmail() {
+        return sellerEmail;
+    }
+
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
@@ -86,5 +91,9 @@ public class BookListModel
 
     public void setSem(String sem) {
         this.sem = sem;
+    }
+
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
     }
 }

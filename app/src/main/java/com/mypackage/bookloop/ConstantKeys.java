@@ -17,6 +17,6 @@ public class ConstantKeys
     public static final String KEY_BOOK_PRICE="bookPrice";
     public static final String SELLER_NAME="sellerName";
     public static final String SELLER_PHONE="sellerPhone";
-
+    public static final String SELLER_EMAIL="sellerEmail";
     //public static String KEY_IMAGE="image";
 }
