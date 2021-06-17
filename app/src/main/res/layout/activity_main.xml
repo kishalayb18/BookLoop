@@ -5,23 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/Main_Activity_Linear_Layout"
 
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home"
-        android:textSize="30sp"
-        android:textColor="@color/purple_200"
-        android:id="@+id/txt_user"/>
-    
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_listing"
-        android:name="com.mypackage.bookloop.ListingFragment"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_list"
+        android:layout_width="401dp"
+        android:layout_height="722dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="14dp" />
+
+
 
 
 </LinearLayout>

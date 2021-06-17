@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/app_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookLoop">
-        <activity android:name=".MyProfileActivity"></activity>
+        <activity android:name=".MyProfileActivity" />
         <activity android:name=".BookDetails" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".UserProfileActivity" />
