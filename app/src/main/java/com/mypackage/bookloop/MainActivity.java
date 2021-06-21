@@ -4,14 +4,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,13 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     FirebaseAuth auth;
     RecyclerView recyclerView;
     DatabaseReference database;
     RVAdapter rvAdapter;
     List<BookListModel> bookListModelList;
-
 
 
     @Override
@@ -42,17 +40,17 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("HOME");
 
         auth=FirebaseAuth.getInstance();
+
         //RecyclerView start
+
         recyclerView =findViewById(R.id.recycler_list);
         database= FirebaseDatabase.getInstance().getReference("UploadedBooks");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         bookListModelList= new ArrayList<BookListModel>();
-
-        //SHIFT WHERE!!!!!!!!
-        //rvAdapter=new RVAdapter(this,bookListModelList);
-        //recyclerView.setAdapter(rvAdapter);
+        rvAdapter=new RVAdapter(this,bookListModelList);
+        recyclerView.setAdapter(rvAdapter);
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
@@ -64,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     BookListModel bookListModel=dataSnapshot.getValue(BookListModel.class);
                     bookListModelList.add(bookListModel);
                 }
+                rvAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -71,46 +70,51 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
         //RecyclerViewEnd
-        //SHIFT WHERE!!!!!!!!
-        rvAdapter=new RVAdapter(this,bookListModelList);
-        recyclerView.setAdapter(rvAdapter);
     }
 
-        //adding menu to the app or action bar
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.search_action);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-            getMenuInflater().inflate(R.menu.search_item, menu);
-            getMenuInflater().inflate(R.menu.main_menu, menu);
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
+        return true;
+    }
 
-            MenuItem menuItem=menu.findItem(R.id.search_action_new);
 
-            android.widget.SearchView searchView=(android.widget.SearchView) menuItem.getActionView();
-            searchView.setMaxWidth(Integer.MAX_VALUE);
-            searchView.setQueryHint("search here");
-
-
-
-            searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    //rvAdapter.getFilter().filter(query);
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    rvAdapter.getFilter().filter(newText);
-                    return true;
-                }
-            });
-
-            return super.onCreateOptionsMenu(menu);
+    private void filter(String searchKey) {
+        ArrayList<BookListModel> filteredlist = new ArrayList<>();
+        for (BookListModel book : bookListModelList) {
+            if(book.getBookName().toLowerCase().contains(searchKey) || book.getAuthorName().toLowerCase().contains(searchKey)
+                    || book.getBookDescription().toLowerCase().contains(searchKey) || book.getPublisherName().toLowerCase().contains(searchKey)
+                    || book.getBookPrice().toLowerCase().contains(searchKey) || book.getSellerName().toLowerCase().contains(searchKey)){
+                filteredlist.add(book);
+            }
         }
+        if (filteredlist.isEmpty()) {
+            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            rvAdapter.filterList(filteredlist);
+        }
+    }
 
     //method to generate event against the menu
-   @Override
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) //allow us to use the id against the menu itself
         {
@@ -122,13 +126,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mp);
                 break;
             case R.id.MyUploads:
-                Toast.makeText(MainActivity.this,"My Uploads", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Login successful", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Upload_new_book:
                 Intent upl = new Intent(MainActivity.this, Upload_NewBook.class);
                 startActivity(upl);//message passing object
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -161,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         });
         alertBuilder.setCancelable(false); //auto cancel suspended
         alertBuilder.show();
+
     }
 }
 

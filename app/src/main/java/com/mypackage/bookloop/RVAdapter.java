@@ -16,23 +16,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Filterable {
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
 
-    private Context mContext;
+    Context mContext;
     private List<BookListModel> bookListFull;
-    private List<BookListModel> bookListSearched;
 
-    public RVAdapter(Context mContext, List<BookListModel> bookListFull) {
+    public RVAdapter(Context mContext, List<BookListModel> bookList) {
         this.mContext = mContext;
-        this.bookListFull = bookListFull;
-        this.bookListSearched=new ArrayList<>(bookListFull);
+        this.bookListFull = bookList;
+    }
+
+    public void filterList(ArrayList<BookListModel> filterllist) {
+        bookListFull = filterllist;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public RVAdapter.UI onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        LayoutInflater inflater= LayoutInflater.from(mContext); //
+        LayoutInflater inflater= LayoutInflater.from(mContext);
         View itemView = inflater.inflate(R.layout.recycler_item_ui,parent,false);
         UI ui=new UI(itemView);
         return ui;
@@ -44,9 +47,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Fil
         BookListModel bookListModel= bookListFull.get(position);
         holder.bookName.setText("Book Name: "+bookListModel.getBookName());
         holder.sellerName.setText("Seller Name: "+bookListModel.getSellerName());
-        //*******************************************************************************ADD PRICE IN HOLDER
 
-        //Clikable RecyclerView Items
         holder.itemView.setOnClickListener(v -> {
             Intent intent=new Intent(mContext, BookDetails.class);
             intent.putExtra(ConstantKeys.KEY_AUTHOR_NAME, bookListModel.getAuthorName());
@@ -57,7 +58,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Fil
             intent.putExtra(ConstantKeys.KEY_SELLER_NAME, bookListModel.getSellerName());
             intent.putExtra(ConstantKeys.KEY_SELLER_PHONE, bookListModel.getSellerPhone());
             intent.putExtra(ConstantKeys.KEY_SEM, bookListModel.getSem());
-            intent.putExtra(ConstantKeys.KEY_SELLER_EMAIL, bookListModel.getSellerEmail());
 
             mContext.startActivity(intent);
         });
@@ -65,59 +65,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Fil
 
     @Override
     public int getItemCount() {
-
         return bookListFull.size();
     }
-
-    @Override
-    public Filter getFilter() {
-
-        return bookFilter;
-    }
-
-    private final Filter bookFilter=new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-
-            ArrayList<BookListModel> filteredOutBookList= new ArrayList<>();
-
-            if(constraint==null||constraint.length()==0)
-            {
-                filteredOutBookList.addAll(bookListFull);
-            }
-            else
-            {
-                String searchKey=constraint.toString().toLowerCase().trim();
-
-                for(BookListModel book:bookListFull)
-                {
-                    if(book.getBookName().toLowerCase().contains(searchKey) || book.getAuthorName().toLowerCase().contains(searchKey)
-                            || book.getBookDescription().toLowerCase().contains(searchKey) || book.getPublisherName().toLowerCase().contains(searchKey)
-                            || book.getBookPrice().toLowerCase().contains(searchKey) || book.getSellerName().toLowerCase().contains(searchKey))
-                    {
-                        filteredOutBookList.add(book);
-                    }
-
-                }
-
-            }
-
-            FilterResults results= new FilterResults();
-            results.values=filteredOutBookList;
-            results.count=filteredOutBookList.size();
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-
-            bookListSearched.clear();
-            bookListSearched.addAll((ArrayList)results.values);
-            notifyDataSetChanged();
-
-        }
-    };
-
 
     public class UI extends RecyclerView.ViewHolder {
 
