@@ -68,16 +68,9 @@
                 android:id="@+id/inp_age"
                 android:hint="Enter phone number"
                 android:inputType="number"
+                android:layout_marginBottom="30dp"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="550dp">
 
         <Button
             android:layout_width="match_parent"

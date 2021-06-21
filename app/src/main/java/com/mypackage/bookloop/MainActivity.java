@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("HOME");
 
+        auth=FirebaseAuth.getInstance();
         //RecyclerView start
         recyclerView =findViewById(R.id.recycler_list);
         database= FirebaseDatabase.getInstance().getReference("UploadedBooks");
