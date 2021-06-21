@@ -116,10 +116,9 @@ public class Upload_NewBook extends AppCompatActivity {
         bookJson.put(ConstantKeys.KEY_SEM, sem);
         bookJson.put(ConstantKeys.KEY_BOOK_DESCRIPTION, description);
         bookJson.put(ConstantKeys.KEY_BOOK_PRICE, price);
-        bookJson.put(ConstantKeys.SELLER_NAME, sellerName);
-        bookJson.put(ConstantKeys.SELLER_PHONE, sellerPhone);
-        bookJson.put(ConstantKeys.SELLER_PHONE, sellerPhone);
-        bookJson.put(ConstantKeys.SELLER_EMAIL,sellerEmail);
+        bookJson.put(ConstantKeys.KEY_SELLER_NAME, sellerName);
+        bookJson.put(ConstantKeys.KEY_SELLER_PHONE, sellerPhone);
+        bookJson.put(ConstantKeys.KEY_SELLER_EMAIL,sellerEmail);
 
         Calendar calendar=Calendar.getInstance();
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yy HH:mm");
@@ -170,16 +169,16 @@ public class Upload_NewBook extends AppCompatActivity {
 
             case R.id.home_menu:
                 Intent hm = new Intent(Upload_NewBook.this, MainActivity.class);
-                startActivity(hm);//message passing object
-                //Toast.makeText(Upload_NewBook.this,"Login successful", Toast.LENGTH_SHORT).show();
+                startActivity(hm);
                 break;
 
             case R.id.MyProfile:
-                Toast.makeText(Upload_NewBook.this,"Login successful", Toast.LENGTH_SHORT).show();
+                Intent mp = new Intent(Upload_NewBook.this, MyProfileActivity.class);
+                startActivity(mp);
                 break;
 
-            case R.id.Search:
-                Toast.makeText(Upload_NewBook.this,"Login successful", Toast.LENGTH_SHORT).show();
+            case R.id.MyUploads:
+                Toast.makeText(Upload_NewBook.this,"My Uploads", Toast.LENGTH_SHORT).show();
                 break;
         }
 
@@ -187,11 +186,6 @@ public class Upload_NewBook extends AppCompatActivity {
     }
 
     private void logout() {
-        //perform operation for logging out
-        /**
-         * showing a dialogue to perform a convenient operation to the user
-         */
-
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Upload_NewBook.this);
         alertBuilder.setTitle("Exit message");
         alertBuilder.setMessage("Confirm to exit");
@@ -202,7 +196,7 @@ public class Upload_NewBook extends AppCompatActivity {
                 Toast.makeText(Upload_NewBook.this,"Operation suspended", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
-        }); //set -ve operation
+        });
 
         alertBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
             @Override
@@ -210,7 +204,7 @@ public class Upload_NewBook extends AppCompatActivity {
                 Toast.makeText(Upload_NewBook.this,"Logout successful", Toast.LENGTH_SHORT).show();
                 Upload_NewBook.this.finish();
             }
-        });// set +ve operation
+        });
 
         alertBuilder.setCancelable(false); //auto cancel suspended
         alertBuilder.show();

@@ -18,14 +18,14 @@ import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Filterable {
 
-    Context mContext;
+    private Context mContext;
     private List<BookListModel> bookListFull;
     private List<BookListModel> bookListSearched;
 
-    public RVAdapter(Context mContext, List<BookListModel> bookList) {
+    public RVAdapter(Context mContext, List<BookListModel> bookListFull) {
         this.mContext = mContext;
-        this.bookListFull = bookList;
-        this.bookListSearched=new ArrayList<>(bookList);
+        this.bookListFull = bookListFull;
+        this.bookListSearched=new ArrayList<>(bookListFull);
     }
 
     @NonNull
@@ -44,7 +44,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Fil
         BookListModel bookListModel= bookListFull.get(position);
         holder.bookName.setText("Book Name: "+bookListModel.getBookName());
         holder.sellerName.setText("Seller Name: "+bookListModel.getSellerName());
+        //*******************************************************************************ADD PRICE IN HOLDER
 
+        //Clikable RecyclerView Items
         holder.itemView.setOnClickListener(v -> {
             Intent intent=new Intent(mContext, BookDetails.class);
             intent.putExtra(ConstantKeys.KEY_AUTHOR_NAME, bookListModel.getAuthorName());
@@ -52,9 +54,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Fil
             intent.putExtra(ConstantKeys.KEY_BOOK_NAME, bookListModel.getBookName());
             intent.putExtra(ConstantKeys.KEY_BOOK_PRICE, bookListModel.getBookPrice());
             intent.putExtra(ConstantKeys.KEY_PUBLISHER_NAME, bookListModel.getPublisherName());
-            intent.putExtra(ConstantKeys.SELLER_NAME, bookListModel.getSellerName());
-            intent.putExtra(ConstantKeys.SELLER_PHONE, bookListModel.getSellerPhone());
+            intent.putExtra(ConstantKeys.KEY_SELLER_NAME, bookListModel.getSellerName());
+            intent.putExtra(ConstantKeys.KEY_SELLER_PHONE, bookListModel.getSellerPhone());
             intent.putExtra(ConstantKeys.KEY_SEM, bookListModel.getSem());
+            intent.putExtra(ConstantKeys.KEY_SELLER_EMAIL, bookListModel.getSellerEmail());
 
             mContext.startActivity(intent);
         });
@@ -62,11 +65,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Fil
 
     @Override
     public int getItemCount() {
+
         return bookListFull.size();
     }
 
     @Override
     public Filter getFilter() {
+
         return bookFilter;
     }
 
@@ -86,11 +91,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> implements Fil
 
                 for(BookListModel book:bookListFull)
                 {
-                    if(book.getBookName().toLowerCase().contains(searchKey))
+                    if(book.getBookName().toLowerCase().contains(searchKey) || book.getAuthorName().toLowerCase().contains(searchKey)
+                            || book.getBookDescription().toLowerCase().contains(searchKey) || book.getPublisherName().toLowerCase().contains(searchKey)
+                            || book.getBookPrice().toLowerCase().contains(searchKey) || book.getSellerName().toLowerCase().contains(searchKey))
                     {
                         filteredOutBookList.add(book);
                     }
+
                 }
+
             }
 
             FilterResults results= new FilterResults();

@@ -113,7 +113,7 @@
             android:id="@+id/lable_sem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Class/Sem Name: "
+            android:text="Class/Sem: "
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="18dp" />
@@ -126,7 +126,9 @@
             android:textColor="@color/black"
             android:textSize="18dp" />
 
-    </LinearLayout><LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/layout_show_book_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -150,7 +152,9 @@
             android:textColor="@color/black"
             android:textSize="18dp" />
 
-    </LinearLayout><LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/layout_show_book_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -174,7 +178,9 @@
             android:textColor="@color/black"
             android:textSize="18dp" />
 
-    </LinearLayout><LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/layout_show_seller_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -198,7 +204,9 @@
             android:textColor="@color/black"
             android:textSize="18dp" />
 
-    </LinearLayout><LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/layout_show_seller_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -221,6 +229,32 @@
             android:text="@string/app_name"
             android:textColor="@color/black"
             android:textSize="18dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+    android:id="@+id/layout_show_seller_email"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/lable_seller_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seller Email: "
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/show_seller_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
 
     </LinearLayout>
 

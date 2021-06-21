@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class BookDetails extends AppCompatActivity {
 
-    TextView showBookName, showAuthorName, showPublisherName, showSem, showBookDescription, showBookPrice, showSellerName, showSellerPhone;
+    TextView showBookName, showAuthorName, showPublisherName, showSem, showBookDescription, showBookPrice, showSellerName, showSellerPhone, shiwSellerEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +38,17 @@ public class BookDetails extends AppCompatActivity {
         showBookPrice=findViewById(R.id.show_book_price);
         showBookPrice.setText(bookPrice);
 
-        String sellerName=getIntent().getStringExtra(ConstantKeys.SELLER_NAME);
+        String sellerName=getIntent().getStringExtra(ConstantKeys.KEY_SELLER_NAME);
         showSellerName=findViewById(R.id.show_seller_name);
         showSellerName.setText(sellerName);
 
 
-        String sellerPhone=getIntent().getStringExtra(ConstantKeys.SELLER_PHONE);
+        String sellerPhone=getIntent().getStringExtra(ConstantKeys.KEY_SELLER_PHONE);
         showSellerPhone=findViewById(R.id.show_seller_phone);
         showSellerPhone.setText(sellerPhone);
+
+        String sellerEmail=getIntent().getStringExtra(ConstantKeys.KEY_SELLER_EMAIL);
+        shiwSellerEmail=findViewById(R.id.show_seller_email);
+        shiwSellerEmail.setText(sellerEmail);
     }
 }
