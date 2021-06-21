@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/Logout"
         android:title="@string/logout"
@@ -13,8 +14,8 @@
         android:id="@+id/MyProfile"
         android:title="@string/my_profile"/>
     <item
-        android:id="@+id/Search"
-        android:title="@string/search"/>
+        android:id="@+id/MyUploads"
+        android:title="@string/my_uploads"/>
     <item
         android:id="@+id/Upload_new_book"
         android:title="@string/upload_new_book"/>
