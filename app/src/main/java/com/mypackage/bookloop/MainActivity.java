@@ -126,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mp);
                 break;
             case R.id.MyUploads:
-                Toast.makeText(MainActivity.this,"Login successful", Toast.LENGTH_SHORT).show();
+                Intent mu = new Intent(MainActivity.this, MyUploads.class);
+                startActivity(mu);
                 break;
             case R.id.Upload_new_book:
                 Intent upl = new Intent(MainActivity.this, Upload_NewBook.class);
