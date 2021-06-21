@@ -189,6 +189,7 @@ public class Upload_NewBook extends AppCompatActivity {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Upload_NewBook.this);
         alertBuilder.setTitle("Exit message");
         alertBuilder.setMessage("Confirm to exit");
+
         alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -201,11 +202,14 @@ public class Upload_NewBook extends AppCompatActivity {
         alertBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                LocalSession localSession = new LocalSession(Upload_NewBook.this);
+                localSession.clearAll();
+                Intent r = new Intent(Upload_NewBook.this, Login_Activity.class);
+                startActivity(r);//message passing object
                 Toast.makeText(Upload_NewBook.this,"Logout successful", Toast.LENGTH_SHORT).show();
                 Upload_NewBook.this.finish();
             }
         });
-
         alertBuilder.setCancelable(false); //auto cancel suspended
         alertBuilder.show();
     }

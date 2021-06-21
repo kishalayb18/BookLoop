@@ -1,12 +1,12 @@
 package com.mypackage.bookloop;
 
 public class BLUserAccount {
-    private String userName, userEmail, userAge;
+    private String userName, userEmail, userPhone;
 
-    public BLUserAccount(String userName, String userEmail, String userAge) {
+    public BLUserAccount(String userName, String userEmail, String userPhone) {
         this.userName = userName;
         this.userEmail = userEmail;
-        this.userAge = userAge;
+        this.userPhone = userPhone;
         //this.userPassword = userPassword;
     }
 
@@ -18,11 +18,8 @@ public class BLUserAccount {
         return userEmail;
     }
 
-    public String getUserAge() {
-        return userAge;
+    public String getuserPhone() {
+        return userPhone;
     }
 
-//    public String getUserPassword() {
-//        return userPassword;
-//    }
 }

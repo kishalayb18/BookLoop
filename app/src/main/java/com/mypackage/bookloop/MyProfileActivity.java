@@ -1,13 +1,17 @@
 package com.mypackage.bookloop;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,21 +31,15 @@ import java.util.Map;
 
 public class MyProfileActivity extends AppCompatActivity {
 
-    LocalSession session;
-    DatabaseReference reference;
-    Button btnUpdate, resetPass;
-    String uid;
-    String name;
-    String age;
-    String email;
-    TextInputLayout layName, layAge;
-    //String pwd;
-    TextInputEditText edit_name;
-    TextInputEditText edit_email;
-    //TextInputEditText edit_pwd;
-    TextInputEditText edit_age;
-    FirebaseAuth fAuth;
-    FirebaseUser user;
+    private LocalSession session;
+    private DatabaseReference reference;
+    private Button btnUpdate, resetPass;
+    private String uid,name,email,phone;
+    private TextInputLayout layName, layAge;
+    private TextInputEditText edit_name, edit_email,edit_phone;
+
+    private FirebaseAuth fAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +47,20 @@ public class MyProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_myprofile);
         session=new LocalSession(MyProfileActivity.this);
         layName = findViewById(R.id.lay_name);
-        layAge = findViewById(R.id.lay_age);
-        edit_age=findViewById(R.id.inp_age);
-        //edit_pwd=findViewById(R.id.inp_pass);
+        layAge = findViewById(R.id.lay_phone);
+
+
         edit_email=findViewById(R.id.inp_email);
         edit_name=findViewById(R.id.inp_name);
+        edit_phone=findViewById(R.id.inp_phone);
         btnUpdate=findViewById(R.id.btn_update);
         resetPass = findViewById(R.id.resetPassword);
+
         uid=session.getInfo(ConstantKeys.KEY_UID);
+
         reference = FirebaseDatabase.getInstance().getReference("BLUserAccount");
         fAuth=FirebaseAuth.getInstance();
         user=fAuth.getCurrentUser();
-
-        //pass values to myprofile intent to here to view email address
 
         getAllInfo();
 
@@ -92,9 +91,8 @@ public class MyProfileActivity extends AppCompatActivity {
 
         Map<String , Object> userJson=new HashMap<>();
         name = edit_name.getText().toString();
-        age = edit_age.getText().toString();
         userJson.put(ConstantKeys.KEY_NAME, name);
-        userJson.put(ConstantKeys.KEY_PHONE, age);
+        userJson.put(ConstantKeys.KEY_PHONE, phone);
 
         layName.setError(null);
         layAge.setError(null);
@@ -102,7 +100,7 @@ public class MyProfileActivity extends AppCompatActivity {
         if(name.isEmpty()){
             layName.setError("Name can't be empty");
         }
-        else if(age.isEmpty()){
+        else if(phone.isEmpty()){
             layAge.setError("Contact number can't be empty");
         }
         else {
@@ -122,19 +120,22 @@ public class MyProfileActivity extends AppCompatActivity {
 
     private void getAllInfo() {
         Intent data = getIntent();
-        String UPemail = data.getStringExtra("UPemail");
         reference.getRef().child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 Map<String, String> user=(Map<String, String>)snapshot.getValue();
-                BLUserAccount account = new BLUserAccount(user.get("userName"), user.get("userEmail"), user.get("userAge"));
+
+                BLUserAccount account = new BLUserAccount(user.get(ConstantKeys.KEY_NAME).toString(),
+                        user.get(ConstantKeys.KEY_EMAIL).toString(), user.get(ConstantKeys.KEY_PHONE).toString());
+
                 name=account.getUserName();
                 email=account.getUserEmail();
-                age=account.getUserAge();
+                phone=account.getuserPhone();
                 edit_name.setText(name);
-                edit_age.setText(age);
-                edit_email.setText(UPemail);
-
+                edit_phone.setText(phone);
+                edit_email.setText(email);
             }
 
             @Override
@@ -143,6 +144,75 @@ public class MyProfileActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //define the menu file
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    /**
+     * method to generate event against the menu
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) //allow us to use the id against the menu itself
+        {
+            case R.id.Logout:
+                logout();
+                break;
+
+            case R.id.home_menu:
+                Intent hm = new Intent(MyProfileActivity.this, MainActivity.class);
+                startActivity(hm);
+                break;
+
+            case R.id.MyProfile:
+                Intent mp = new Intent(MyProfileActivity.this, MyProfileActivity.class);
+                startActivity(mp);
+                break;
+
+            case R.id.Upload_new_book:
+                Intent upl = new Intent(MyProfileActivity.this, Upload_NewBook.class);
+                startActivity(upl);//message passing object
+                break;
+
+            case R.id.MyUploads:
+                Toast.makeText(MyProfileActivity.this,"My Uploads", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MyProfileActivity.this);
+        alertBuilder.setTitle("Exit message");
+        alertBuilder.setMessage("Confirm to exit");
+
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //cancel operation
+                Toast.makeText(MyProfileActivity.this,"Operation suspended", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        alertBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                LocalSession localSession = new LocalSession(MyProfileActivity.this);
+                localSession.clearAll();
+                Intent r = new Intent(MyProfileActivity.this, Login_Activity.class);
+                startActivity(r);//message passing object
+                Toast.makeText(MyProfileActivity.this,"Logout successful", Toast.LENGTH_SHORT).show();
+                MyProfileActivity.this.finish();
+            }
+        });
+        alertBuilder.setCancelable(false); //auto cancel suspended
+        alertBuilder.show();
     }
 
 

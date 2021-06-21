@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.MyProfile:
                 Intent mp = new Intent(MainActivity.this, MyProfileActivity.class);
-                mp.putExtra("UPemail", auth.getCurrentUser().getEmail());
                 startActivity(mp);
                 break;
             case R.id.MyUploads:
