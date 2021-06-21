@@ -8,7 +8,7 @@
     app:cardBackgroundColor="#D3C7EA"
     app:cardCornerRadius="9dp"
     app:cardElevation="7dp"
-    android:id="@+id/ui_card">
+    android:id="@+id/ui_card_my_uploads">
 
 
     <LinearLayout
@@ -19,7 +19,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp">
         <TextView
-            android:id="@+id/ui_book_name"
+            android:id="@+id/ui_book_name_mu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
