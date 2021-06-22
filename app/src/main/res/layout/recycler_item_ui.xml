@@ -16,15 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-       android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp">
+        android:layout_margin="6dp">
 
         <TextView
             android:id="@+id/ui_book_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="20dp"
+            android:layout_margin="6dp"
             android:drawableStart="@drawable/book"
             android:text=" Book Name"
             android:textColor="@color/black"
@@ -35,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="20dp"
+            android:layout_margin="6dp"
             android:drawableStart="@drawable/price"
             android:text="Rs."
             android:textColor="@color/black"
@@ -46,32 +45,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="20dp"
+            android:layout_margin="6dp"
             android:drawableStart="@drawable/ic_user_"
-            android:text="Seller Contact"
+            android:text="Seller Name"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="15dp" />
 
 
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal">-->
 
+<!--            &lt;!&ndash;wishlist menu-->
+<!--            <TextView-->
+<!--                android:id="@+id/addtofavourites"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_weight="1"-->
+<!--                android:drawableRight="@drawable/fav_unmarked"-->
+<!--                android:padding="20dp"/>-->
+<!--                &ndash;&gt;-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <!--wishlist menu
-            <TextView
-                android:id="@+id/addtofavourites"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:drawableRight="@drawable/fav_unmarked"
-                android:padding="20dp"/>
-                -->
-
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
 
     </LinearLayout>

@@ -8,6 +8,10 @@ public class BookListModel
     public BookListModel() {
     }
 
+    public BookListModel(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
+    }
+
     public BookListModel(String sellerName, String bookName) {
         this.sellerName = sellerName;
         this.bookName = bookName;

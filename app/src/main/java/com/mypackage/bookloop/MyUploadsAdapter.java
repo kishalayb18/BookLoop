@@ -2,6 +2,7 @@ package com.mypackage.bookloop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,24 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUploadsHolder> {
 
     Context mContext;
     private List<BookListModel> bookListFull;
+    FirebaseAuth auth;
 
     public MyUploadsAdapter(Context mContext, List<BookListModel> bookList) {
         this.mContext = mContext;
@@ -39,7 +51,8 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
     public void onBindViewHolder(@NonNull MyUploadsHolder holder, int position) {
 
         BookListModel bookListModel= bookListFull.get(position);
-        holder.bookName.setText("Book Name: "+bookListModel.getBookName());
+        holder.bookName.setText(bookListModel.getBookName());
+        holder.bookPrice.setText("Price: "+bookListModel.getBookPrice());
 
 
         holder.editMyUploads.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +60,8 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
             public void onClick(View v) {
 
                 Toast.makeText(mContext,"Edit clicked",Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(mContext, MyProfileActivity.class);
-                mContext.startActivity(intent);
+//                Intent intent=new Intent(mContext, MyProfileActivity.class);
+//                mContext.startActivity(intent);
                 /**
                  * CODE TO EDIT SHOULD BE ADDED
                  */
@@ -64,22 +77,26 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
                 /**
                  * CODE TO DELETE SHOULD BE ADDED
                  */
+
+//                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+//                Query applesQuery = ref.child("UploadedBooks").orderByChild("title").equalTo("Apple");
+//
+//                applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                        for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+//                            appleSnapshot.getRef().removeValue();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//                        Log.e(TAG, "onCancelled", databaseError.toException());
+//                    }
+//                });
             }
         });
-
-//        holder.itemView.setOnClickListener(v -> {
-//            Intent intent=new Intent(mContext, BookDetails.class);
-//            intent.putExtra(ConstantKeys.KEY_AUTHOR_NAME, bookListModel.getAuthorName());
-//            intent.putExtra(ConstantKeys.KEY_BOOK_DESCRIPTION, bookListModel.getBookDescription());
-//            intent.putExtra(ConstantKeys.KEY_BOOK_NAME, bookListModel.getBookName());
-//            intent.putExtra(ConstantKeys.KEY_BOOK_PRICE, bookListModel.getBookPrice());
-//            intent.putExtra(ConstantKeys.KEY_PUBLISHER_NAME, bookListModel.getPublisherName());
-//            intent.putExtra(ConstantKeys.KEY_SELLER_NAME, bookListModel.getSellerName());
-//            intent.putExtra(ConstantKeys.KEY_SELLER_PHONE, bookListModel.getSellerPhone());
-//            intent.putExtra(ConstantKeys.KEY_SEM, bookListModel.getSem());
-//
-//            mContext.startActivity(intent);
-//        });
     }
 
     @Override
@@ -90,7 +107,7 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
     public class MyUploadsHolder extends RecyclerView.ViewHolder {
 
         private CardView cardView;
-        private TextView bookName, editMyUploads, deleteMyUploads;
+        private TextView bookName, bookPrice, editMyUploads, deleteMyUploads;
 
 
         //NEED TO ADD DELETE AND EDIT ICON
@@ -98,6 +115,7 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
             super(itemView);
             cardView=itemView.findViewById(R.id.ui_card_my_uploads);
             bookName=itemView.findViewById(R.id.ui_book_name_mu);
+            bookPrice=itemView.findViewById(R.id.ui_book_price_mu);
             editMyUploads=itemView.findViewById(R.id.edit_myuploads);
             deleteMyUploads=itemView.findViewById(R.id.delete_myuploads);
         }

@@ -35,7 +35,7 @@ public class MyProfileActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private Button btnUpdate, resetPass;
     private String uid,name,email,phone;
-    private TextInputLayout layName, layAge;
+    private TextInputLayout layName, layPhone;
     private TextInputEditText edit_name, edit_email,edit_phone;
 
     private FirebaseAuth fAuth;
@@ -47,7 +47,7 @@ public class MyProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_myprofile);
         session=new LocalSession(MyProfileActivity.this);
         layName = findViewById(R.id.lay_name);
-        layAge = findViewById(R.id.lay_phone);
+        layPhone = findViewById(R.id.lay_phone);
 
 
         edit_email=findViewById(R.id.inp_email);
@@ -95,13 +95,13 @@ public class MyProfileActivity extends AppCompatActivity {
         userJson.put(ConstantKeys.KEY_PHONE, phone);
 
         layName.setError(null);
-        layAge.setError(null);
+        layPhone.setError(null);
 
         if(name.isEmpty()){
             layName.setError("Name can't be empty");
         }
         else if(phone.isEmpty()){
-            layAge.setError("Contact number can't be empty");
+            layPhone.setError("Contact number can't be empty");
         }
         else {
             reference.child(uid).updateChildren(userJson, new DatabaseReference.CompletionListener() {

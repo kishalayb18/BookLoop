@@ -45,7 +45,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
     public void onBindViewHolder(@NonNull RVAdapter.UI holder, int position) {
 
         BookListModel bookListModel= bookListFull.get(position);
-        holder.bookName.setText("Book Name: "+bookListModel.getBookName());
+        holder.bookName.setText(bookListModel.getBookName());
+        holder.bookPrice.setText("Price: "+bookListModel.getBookPrice());
         holder.sellerName.setText("Seller Name: "+bookListModel.getSellerName());
 
         holder.itemView.setOnClickListener(v -> {
@@ -55,6 +56,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
             intent.putExtra(ConstantKeys.KEY_BOOK_NAME, bookListModel.getBookName());
             intent.putExtra(ConstantKeys.KEY_BOOK_PRICE, bookListModel.getBookPrice());
             intent.putExtra(ConstantKeys.KEY_PUBLISHER_NAME, bookListModel.getPublisherName());
+            intent.putExtra(ConstantKeys.KEY_SELLER_EMAIL, bookListModel.getSellerEmail());
             intent.putExtra(ConstantKeys.KEY_SELLER_NAME, bookListModel.getSellerName());
             intent.putExtra(ConstantKeys.KEY_SELLER_PHONE, bookListModel.getSellerPhone());
             intent.putExtra(ConstantKeys.KEY_SEM, bookListModel.getSem());
@@ -72,6 +74,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
 
         private CardView cardView;
         private TextView bookName;
+        private TextView bookPrice;
         private TextView sellerName;
 
         public UI(@NonNull View itemView) {
@@ -79,6 +82,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UI> {
 
             cardView=itemView.findViewById(R.id.ui_card);
             bookName=itemView.findViewById(R.id.ui_book_name);
+            bookPrice=itemView.findViewById(R.id.ui_book_price);
             sellerName=itemView.findViewById(R.id.ui_seller_details);
 
         }
