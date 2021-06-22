@@ -108,6 +108,12 @@ public class Upload_NewBook extends AppCompatActivity {
         user=mAuth.getCurrentUser();
         String uid=user.getUid();
 
+        Calendar calendar=Calendar.getInstance();
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yy HH:mm");
+        String timeStamp=sdf.format(calendar.getTime());
+
+        String bookId=uid+timeStamp;
+
 
         Map<String , String> bookJson=new HashMap<>();
         bookJson.put(ConstantKeys.KEY_BOOK_NAME, bookName);
@@ -115,31 +121,28 @@ public class Upload_NewBook extends AppCompatActivity {
         bookJson.put(ConstantKeys.KEY_PUBLISHER_NAME, publisherName);
         bookJson.put(ConstantKeys.KEY_SEM, sem);
         bookJson.put(ConstantKeys.KEY_BOOK_DESCRIPTION, description);
+        bookJson.put(ConstantKeys.KEY_BOOK_ID, bookId);
         bookJson.put(ConstantKeys.KEY_BOOK_PRICE, price);
         bookJson.put(ConstantKeys.KEY_SELLER_NAME, sellerName);
         bookJson.put(ConstantKeys.KEY_SELLER_PHONE, sellerPhone);
         bookJson.put(ConstantKeys.KEY_SELLER_EMAIL,sellerEmail);
-
-        Calendar calendar=Calendar.getInstance();
-        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yy HH:mm");
-        String timeStamp=sdf.format(calendar.getTime());
-
-        String bookId=uid+timeStamp;
+        //bookJson.put(ConstantKeys.KEY_SELLER_EMAIL,sellerEmail);
 
         node= db.getReference("UploadedBooks");
 
         node.child(bookId).setValue(bookJson)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
-                        Toast.makeText(this,"BOOK UPLOADED",Toast.LENGTH_LONG).show();
+                        Toast.makeText(this,"BOOK UPLOADED",Toast.LENGTH_SHORT).show();
 
                         //NAVIGATING SIGNUP TO LOGIN AFTER SUCCESSFUL REGISTRATION
                         Intent r=new Intent(Upload_NewBook.this, MainActivity.class);
                         startActivity(r);
+                        this.finish();
                     }
                     else {
                         Toast.makeText(this,"Upload Failed",Toast.LENGTH_SHORT).show();
-                        mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
+                        //mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
                     }
                 })
                 .addOnFailureListener(e ->

@@ -56,50 +56,33 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
         BookListModel bookListModel= bookListFull.get(position);
         holder.bookName.setText(bookListModel.getBookName());
         holder.bookPrice.setText("Price: "+bookListModel.getBookPrice());
+        String thisBookId=bookListModel.getBookID();
 
 
-//        holder.editMyUploads.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Toast.makeText(mContext,"Edit clicked",Toast.LENGTH_SHORT).show();
-////                Intent intent=new Intent(mContext, MyProfileActivity.class);
-////                mContext.startActivity(intent);
-//                /**
-//                 * CODE TO EDIT SHOULD BE ADDED
-//                 */
-//            }
-//        });
-//
-//
-//        holder.deleteMyUploads.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Toast.makeText(mContext,"Delete clicked",Toast.LENGTH_SHORT).show();
-//                /**
-//                 * CODE TO DELETE SHOULD BE ADDED
-//                 */
+        holder.editMyUploads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-//                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-//                Query applesQuery = ref.child("UploadedBooks").orderByChild("title").equalTo("Apple");
-//
-//                applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                        for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
-//                            appleSnapshot.getRef().removeValue();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//                        Log.e(TAG, "onCancelled", databaseError.toException());
-//                    }
-//                });
-//            }
-//        });
+                Toast.makeText(mContext,"Edit clicked",Toast.LENGTH_SHORT).show();
+                /**
+                 * CODE TO EDIT SHOULD BE ADDED
+                 */
+            }
+        });
+
+
+        holder.deleteMyUploads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /**
+                 * CODE TO DELETE BOOK ITEM FROM MyUploads.
+                 * ALERT DIALOG BOX NEED TO BE ADDED!
+                 */
+                database.child(thisBookId).removeValue();
+
+            }
+        });
     }
 
     @Override
@@ -113,7 +96,6 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
         private TextView bookName, bookPrice, editMyUploads, deleteMyUploads;
 
 
-        //NEED TO ADD DELETE AND EDIT ICON
         public MyUploadsHolder(@NonNull View itemView) {
             super(itemView);
             cardView=itemView.findViewById(R.id.ui_card_my_uploads);
@@ -121,33 +103,7 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
             bookPrice=itemView.findViewById(R.id.ui_book_price_mu);
             editMyUploads=itemView.findViewById(R.id.edit_myuploads);
             deleteMyUploads=itemView.findViewById(R.id.delete_myuploads);
-
-            deleteMyUploads.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(v.equals(deleteMyUploads)){
-                        removeAt(getLayoutPosition());
-                    }
-                }
-            });
-
-            editMyUploads.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(v.equals(editMyUploads)){
-                        Toast.makeText(mContext,"Edit Me",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
         }
-    }
-
-    public void removeAt(int position) {
-        bookListFull.remove(position);
-        //database.child("wCaU8S2PznRdVP9PkYQZtS9qLxh122-06-21 01:40").removeValue();
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, bookListFull.size());
     }
 
 }

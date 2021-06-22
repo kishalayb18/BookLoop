@@ -14,6 +14,7 @@ public class ConstantKeys
     public static final String KEY_PUBLISHER_NAME="publisherName";
     public static final String KEY_SEM="sem";
     public static final String KEY_BOOK_DESCRIPTION="bookDescription";
+    public static final String KEY_BOOK_ID="bookID";
     public static final String KEY_BOOK_PRICE="bookPrice";
     public static final String KEY_SELLER_NAME="sellerName";
     public static final String KEY_SELLER_PHONE="sellerPhone";
