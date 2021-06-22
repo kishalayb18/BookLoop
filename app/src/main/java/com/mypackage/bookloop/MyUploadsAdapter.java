@@ -31,6 +31,7 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
     Context mContext;
     private List<BookListModel> bookListFull;
     FirebaseAuth auth;
+    DatabaseReference database;
 
     public MyUploadsAdapter(Context mContext, List<BookListModel> bookList) {
         this.mContext = mContext;
@@ -40,6 +41,8 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
     @NonNull
     @Override
     public MyUploadsAdapter.MyUploadsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        database= FirebaseDatabase.getInstance().getReference("UploadedBooks");
 
         LayoutInflater inflater= LayoutInflater.from(mContext);
         View itemView = inflater.inflate(R.layout.single_row_my_uploads,parent,false);
@@ -55,28 +58,28 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
         holder.bookPrice.setText("Price: "+bookListModel.getBookPrice());
 
 
-        holder.editMyUploads.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(mContext,"Edit clicked",Toast.LENGTH_SHORT).show();
-//                Intent intent=new Intent(mContext, MyProfileActivity.class);
-//                mContext.startActivity(intent);
-                /**
-                 * CODE TO EDIT SHOULD BE ADDED
-                 */
-            }
-        });
-
-
-        holder.deleteMyUploads.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(mContext,"Delete clicked",Toast.LENGTH_SHORT).show();
-                /**
-                 * CODE TO DELETE SHOULD BE ADDED
-                 */
+//        holder.editMyUploads.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Toast.makeText(mContext,"Edit clicked",Toast.LENGTH_SHORT).show();
+////                Intent intent=new Intent(mContext, MyProfileActivity.class);
+////                mContext.startActivity(intent);
+//                /**
+//                 * CODE TO EDIT SHOULD BE ADDED
+//                 */
+//            }
+//        });
+//
+//
+//        holder.deleteMyUploads.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Toast.makeText(mContext,"Delete clicked",Toast.LENGTH_SHORT).show();
+//                /**
+//                 * CODE TO DELETE SHOULD BE ADDED
+//                 */
 
 //                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 //                Query applesQuery = ref.child("UploadedBooks").orderByChild("title").equalTo("Apple");
@@ -95,8 +98,8 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
 //                        Log.e(TAG, "onCancelled", databaseError.toException());
 //                    }
 //                });
-            }
-        });
+//            }
+//        });
     }
 
     @Override
@@ -118,7 +121,33 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
             bookPrice=itemView.findViewById(R.id.ui_book_price_mu);
             editMyUploads=itemView.findViewById(R.id.edit_myuploads);
             deleteMyUploads=itemView.findViewById(R.id.delete_myuploads);
+
+            deleteMyUploads.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(v.equals(deleteMyUploads)){
+                        removeAt(getLayoutPosition());
+                    }
+                }
+            });
+
+            editMyUploads.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(v.equals(editMyUploads)){
+                        Toast.makeText(mContext,"Edit Me",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         }
+    }
+
+    public void removeAt(int position) {
+        bookListFull.remove(position);
+        //database.child("wCaU8S2PznRdVP9PkYQZtS9qLxh122-06-21 01:40").removeValue();
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, bookListFull.size());
     }
 
 }
