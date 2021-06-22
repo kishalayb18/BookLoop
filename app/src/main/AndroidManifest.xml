@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/app_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookLoop">
-        <activity android:name=".MyUploads"></activity>
+        <activity android:name=".EditBookDetails"></activity>
+        <activity android:name=".MyUploads" />
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".BookDetails" />
         <activity android:name=".EditProfileActivity" />

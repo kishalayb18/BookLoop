@@ -35,9 +35,6 @@ public class MyUploads extends AppCompatActivity {
         user=FirebaseAuth.getInstance().getCurrentUser();
         String myEmail= user.getEmail();
 
-
-        //RecyclerView start
-
         recyclerView =findViewById(R.id.recycler_list_myUploads);
         database= FirebaseDatabase.getInstance().getReference("UploadedBooks");
         recyclerView.setHasFixedSize(true);
