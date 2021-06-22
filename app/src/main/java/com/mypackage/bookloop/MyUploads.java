@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class MyUploads extends AppCompatActivity {
 
-    FirebaseAuth auth;
+    FirebaseUser user;
     RecyclerView recyclerView;
     DatabaseReference database;
     MyUploadsAdapter myUploadsAdapter;
@@ -30,6 +31,9 @@ public class MyUploads extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_uploads);
         getSupportActionBar().setTitle("MY UPLOADS");
+
+        user=FirebaseAuth.getInstance().getCurrentUser();
+        String myEmail= user.getEmail();
 
 
         //RecyclerView start
@@ -52,7 +56,9 @@ public class MyUploads extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
 
                     BookListModel bookListModel=dataSnapshot.getValue(BookListModel.class);
-                    bookListModelList.add(bookListModel);
+                    if(bookListModel.getSellerEmail().equals(myEmail)){
+                        bookListModelList.add(bookListModel);
+                    }
                 }
                 myUploadsAdapter.notifyDataSetChanged();
             }
