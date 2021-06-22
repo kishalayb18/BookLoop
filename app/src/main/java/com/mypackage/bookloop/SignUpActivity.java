@@ -98,23 +98,37 @@ public class SignUpActivity extends AppCompatActivity {
         userJson.put(ConstantKeys.KEY_EMAIL, email);
         userJson.put(ConstantKeys.KEY_PHONE, phn);
 
-        reference.child(uid).setValue(userJson)
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        Toast.makeText(this,"Registration Successful",Toast.LENGTH_LONG).show();
+        layName.setError(null);
+        layEmail.setError(null);
+        layPhn.setError(null);
 
-                        //NAVIGATING SIGNUP TO LOGIN AFTER SUCCESSFUL REGISTRATION
-                        Intent r=new Intent(SignUpActivity.this, Login_Activity.class);
-                        startActivity(r);
-                    }
-                    else {
-                        Toast.makeText(this,"Registration Failed",Toast.LENGTH_SHORT).show();
-                        mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
-                    }
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
-                );
+        if(name.isEmpty()){
+            layName.setError("Can't be empty");
+        }
+        else if(email.isEmpty()){
+            layEmail.setError("Can't be empty");
+        }
+        else if(phn.isEmpty()){
+            layPhn.setError("Can't be empty");
+        }
+        else {
+            reference.child(uid).setValue(userJson)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "Registration Successful", Toast.LENGTH_LONG).show();
+
+                            //NAVIGATING SIGNUP TO LOGIN AFTER SUCCESSFUL REGISTRATION
+                            Intent r = new Intent(SignUpActivity.this, Login_Activity.class);
+                            startActivity(r);
+                        } else {
+                            Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                            mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
+                        }
+                    })
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Failed Due To " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                    );
+        }
     }
 
 }

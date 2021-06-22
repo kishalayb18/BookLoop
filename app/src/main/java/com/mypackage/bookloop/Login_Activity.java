@@ -62,15 +62,15 @@ public class Login_Activity extends AppCompatActivity {
                 //ADD SOME VALIDATIONS
                 if(email.isEmpty())
                 {
-                    layoutUser.setError("Email Field Can't Be Blank");
+                    layoutUser.setError("Can't be empty");
                 }
                 else if(pwd.isEmpty())
                 {
-                    layoutPass.setError("Password Field Can't Be Blank");
+                    layoutPass.setError("Can't be empty");
                 }
                 else if(pwd.length()<5)
                 {
-                    layoutPass.setError("Password Should Be Minimum Of 5 Characters");
+                    layoutPass.setError("Password Should Be Minimum Of 6 Characters");
                 }
                 else
                 {
