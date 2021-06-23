@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
         layName=findViewById(R.id.layout_user_name);
         layEmail=findViewById(R.id.layout_email);
         layPhn=findViewById(R.id.layout_phone);
-        layPwd=findViewById(R.id.edit_password);
+        layPwd=findViewById(R.id.layout_password);
         layConPwd=findViewById(R.id.layout_reenter_pwd);
 
         inpName=findViewById(R.id.user_name);
@@ -60,12 +60,53 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         btnSignUp.setOnClickListener(v -> {
+            layName.setError(null);
+            layEmail.setError(null);
+            layPhn.setError(null);
+            layPwd.setError(null);
+//            layConPwd.setError(null);
+
             String name=inpName.getText().toString();
             String email=inpEmail.getText().toString().trim();
             String phn=inpPhn.getText().toString();
             String pass=inpPass.getText().toString().trim();
-            addUser(email, pass, name, phn);
-            //Toast.makeText(this, "Signing up",Toast.LENGTH_SHORT).show();
+            String passConfirm=inpConPass.getText().toString().trim();
+
+            if(name.isEmpty())
+            {
+                layName.setError("Can't be empty");
+            }
+            else if(email.isEmpty()){
+                layEmail.setError("Can't be empty");
+            }
+            else if(phn.isEmpty()){
+                layPhn.setError("Can't be empty");
+            }
+            else if (pass.isEmpty())
+            {
+                layPwd.setError("Can't be empty");
+            }
+            else if (pass.length()<6)
+            {
+                layPwd.setError("Password Should Be Minimum Of 6 Characters");
+            }
+            else if (passConfirm.isEmpty())
+            {
+                layConPwd.setError("Can't be empty");
+            }
+            else if (!pass.equals(passConfirm))
+            {
+                layConPwd.setError("Password mismatch");
+            }
+            else
+            {
+                addUser(email, pass, name, phn);
+                Toast.makeText(this, "Signing up",Toast.LENGTH_SHORT).show();
+            }
+
+
+
+
         });
 
     }
@@ -81,11 +122,11 @@ public class SignUpActivity extends AppCompatActivity {
                         addProfile(uid, name, email, phn);
                         Toast.makeText(this, "Verification email sent.",Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(this,"This email is already used",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,"Invalid or Already Used Email",Toast.LENGTH_LONG).show();
                         //mAuth.getCurrentUser().delete();
                     }
                 })
-                .addOnFailureListener(e -> Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
+                .addOnFailureListener(e -> Toast.makeText(this,"Signing Up Failed",Toast.LENGTH_SHORT).show()
                 );
     }
 
@@ -98,37 +139,24 @@ public class SignUpActivity extends AppCompatActivity {
         userJson.put(ConstantKeys.KEY_EMAIL, email);
         userJson.put(ConstantKeys.KEY_PHONE, phn);
 
-        layName.setError(null);
-        layEmail.setError(null);
-        layPhn.setError(null);
+        reference.child(uid).setValue(userJson)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        Toast.makeText(this,"Registration Successful",Toast.LENGTH_LONG).show();
 
-        if(name.isEmpty()){
-            layName.setError("Can't be empty");
-        }
-        else if(email.isEmpty()){
-            layEmail.setError("Can't be empty");
-        }
-        else if(phn.isEmpty()){
-            layPhn.setError("Can't be empty");
-        }
-        else {
-            reference.child(uid).setValue(userJson)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(this, "Registration Successful", Toast.LENGTH_LONG).show();
+                        //NAVIGATING SIGNUP TO LOGIN AFTER SUCCESSFUL REGISTRATION
+                        Intent r=new Intent(SignUpActivity.this, Login_Activity.class);
+                        startActivity(r);
+                    }
+                    else {
+                        Toast.makeText(this,"Registration Failed",Toast.LENGTH_SHORT).show();
+                        mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
+                    }
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
+                );
 
-                            //NAVIGATING SIGNUP TO LOGIN AFTER SUCCESSFUL REGISTRATION
-                            Intent r = new Intent(SignUpActivity.this, Login_Activity.class);
-                            startActivity(r);
-                        } else {
-                            Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show();
-                            mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
-                        }
-                    })
-                    .addOnFailureListener(e ->
-                            Toast.makeText(this, "Failed Due To " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                    );
-        }
     }
 
 }
