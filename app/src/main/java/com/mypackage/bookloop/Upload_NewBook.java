@@ -182,7 +182,7 @@ public class Upload_NewBook extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //define the menu file
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.without_search_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
     /**
@@ -192,22 +192,23 @@ public class Upload_NewBook extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) //allow us to use the id against the menu itself
         {
-            case R.id.Logout:
+            case R.id.Logout_without_search:
                 logout();
                 break;
 
-            case R.id.home_menu:
+            case R.id.home_menu_without_search:
                 Intent hm = new Intent(Upload_NewBook.this, MainActivity.class);
                 startActivity(hm);
                 break;
 
-            case R.id.MyProfile:
+            case R.id.MyProfile_without_search:
                 Intent mp = new Intent(Upload_NewBook.this, MyProfileActivity.class);
                 startActivity(mp);
                 break;
 
-            case R.id.MyUploads:
-                Toast.makeText(Upload_NewBook.this,"My Uploads", Toast.LENGTH_SHORT).show();
+            case R.id.MyUploads_without_search:
+                Intent unpmy = new Intent(Upload_NewBook.this, MyUploads.class);
+                startActivity(unpmy);
                 break;
         }
 
