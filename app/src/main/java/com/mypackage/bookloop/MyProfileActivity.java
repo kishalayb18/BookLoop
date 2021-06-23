@@ -98,10 +98,10 @@ public class MyProfileActivity extends AppCompatActivity {
         layPhone.setError(null);
 
         if(name.isEmpty()){
-            layName.setError("Name can't be empty");
+            layName.setError("Can't be empty");
         }
         else if(phone.isEmpty()){
-            layPhone.setError("Contact number can't be empty");
+            layPhone.setError("Can't be empty");
         }
         else {
             reference.child(uid).updateChildren(userJson, new DatabaseReference.CompletionListener() {

@@ -128,26 +128,52 @@ public class Upload_NewBook extends AppCompatActivity {
         bookJson.put(ConstantKeys.KEY_SELLER_EMAIL,sellerEmail);
         //bookJson.put(ConstantKeys.KEY_SELLER_EMAIL,sellerEmail);
 
+        bknameInpt.setError(null);
+        authorInpt.setError(null);
+        publisherInpt.setError(null);
+        semInpt.setError(null);
+        descripInpt.setError(null);
+        priceInpt.setError(null);
+
         node= db.getReference("UploadedBooks");
 
-        node.child(bookId).setValue(bookJson)
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        Toast.makeText(this,"BOOK UPLOADED",Toast.LENGTH_SHORT).show();
+        if(bookName.isEmpty()){
+            bknameInpt.setError("Can't be empty");
+        }
+        else if(authorName.isEmpty()){
+            authorInpt.setError("Can't be empty");
+        }
+        else if(publisherName.isEmpty()){
+            publisherInpt.setError("Can't be empty");
+        }
+        else if(sem.isEmpty()){
+            semInpt.setError("Can't be empty");
+        }
+        else if(description.isEmpty()){
+            descripInpt.setError("Can't be empty");
+        }
+        else if(price.isEmpty()){
+            priceInpt.setError("Can't be empty");
+        }
+        else {
+            node.child(bookId).setValue(bookJson)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "BOOK UPLOADED", Toast.LENGTH_SHORT).show();
 
-                        //NAVIGATING SIGNUP TO LOGIN AFTER SUCCESSFUL REGISTRATION
-                        Intent r=new Intent(Upload_NewBook.this, MainActivity.class);
-                        startActivity(r);
-                        this.finish();
-                    }
-                    else {
-                        Toast.makeText(this,"Upload Failed",Toast.LENGTH_SHORT).show();
-                        //mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
-                    }
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this,"Failed Due To "+e.getMessage(),Toast.LENGTH_SHORT).show()
-                );
+                            //NAVIGATING SIGNUP TO LOGIN AFTER SUCCESSFUL REGISTRATION
+                            Intent r = new Intent(Upload_NewBook.this, MainActivity.class);
+                            startActivity(r);
+                            this.finish();
+                        } else {
+                            Toast.makeText(this, "Upload Failed", Toast.LENGTH_SHORT).show();
+                            //mAuth.getCurrentUser().delete(); //TO DELETE THE CURRENT USER ACCOUNT FROM AUTHENTICATION
+                        }
+                    })
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Failed Due To " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                    );
+        }
     }
 
     /**

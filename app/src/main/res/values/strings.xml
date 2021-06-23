@@ -26,4 +26,5 @@
     <string name="edit_full_name">Edit full name</string>
     <string name="Backtomenu">Back to menu</string>
     <string name="changepass">Change Password</string>
+    <string name="edit_myupload">Edit Item Details</string>
 </resources>

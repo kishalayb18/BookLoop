@@ -152,14 +152,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        alertBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+        alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 LocalSession localSession = new LocalSession(MainActivity.this);
                 localSession.clearAll();
                 Intent r = new Intent(MainActivity.this, Login_Activity.class);
                 startActivity(r);//message passing object
-                Toast.makeText(MainActivity.this,"Logout successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Logged out successfully", Toast.LENGTH_SHORT).show();
                 MainActivity.this.finish();
             }
         });

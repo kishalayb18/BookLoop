@@ -1,6 +1,7 @@
 package com.mypackage.bookloop;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -65,8 +67,20 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
 
                 Toast.makeText(mContext,"Edit clicked",Toast.LENGTH_SHORT).show();
                 /**
-                 * CODE TO EDIT SHOULD BE ADDED
+                 * CODE TO EDIT BOOK DETAILS SHOULD BE ADDED!
                  */
+                Intent intent=new Intent(mContext,EditBookDetails.class);
+
+                intent.putExtra(ConstantKeys.KEY_AUTHOR_NAME, bookListModel.getAuthorName());
+                intent.putExtra(ConstantKeys.KEY_BOOK_DESCRIPTION, bookListModel.getBookDescription());
+                intent.putExtra(ConstantKeys.KEY_BOOK_ID, bookListModel.getBookID());
+                intent.putExtra(ConstantKeys.KEY_BOOK_NAME, bookListModel.getBookName());
+                intent.putExtra(ConstantKeys.KEY_BOOK_PRICE, bookListModel.getBookPrice());
+                intent.putExtra(ConstantKeys.KEY_PUBLISHER_NAME, bookListModel.getPublisherName());
+                intent.putExtra(ConstantKeys.KEY_SELLER_NAME, bookListModel.getSellerName());
+                intent.putExtra(ConstantKeys.KEY_SELLER_PHONE, bookListModel.getSellerPhone());
+                intent.putExtra(ConstantKeys.KEY_SEM, bookListModel.getSem());
+                mContext.startActivity(intent);
             }
         });
 
@@ -79,7 +93,31 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
                  * CODE TO DELETE BOOK ITEM FROM MyUploads.
                  * ALERT DIALOG BOX NEED TO BE ADDED!
                  */
-                database.child(thisBookId).removeValue();
+                //database.child(thisBookId).removeValue();
+
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(mContext);
+                alertBuilder.setTitle("DELETE MESSAGE");
+                alertBuilder.setMessage("You cannot retrieve the book item later.");
+
+                alertBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //cancel operation
+                        Toast.makeText(mContext,"Cancelled", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+
+                alertBuilder.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        database.child(thisBookId).removeValue();
+                        Toast.makeText(mContext,"Deleted Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alertBuilder.setCancelable(false); //auto cancel suspended
+                alertBuilder.show();
 
             }
         });
