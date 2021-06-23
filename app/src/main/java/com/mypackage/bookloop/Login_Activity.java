@@ -18,7 +18,7 @@ public class Login_Activity extends AppCompatActivity {
     TextInputLayout layoutUser, layoutPass;
     public TextInputEditText editUser, editPass;
     Button btnLogin;
-    TextView navTextSignUp;
+    TextView navTextSignUp, forgotPass;
     LocalSession session;
     FirebaseAuth auth;
 
@@ -35,6 +35,7 @@ public class Login_Activity extends AppCompatActivity {
         editPass=findViewById(R.id.edit_password);
         btnLogin=findViewById(R.id.login_btn);
         navTextSignUp=findViewById(R.id.Signup);
+        forgotPass=findViewById(R.id.forgotPassword);
 
         //INITIALIZING THE OBJECT FOR SESSION HANDLING
         session=new LocalSession(Login_Activity.this);
@@ -78,6 +79,14 @@ public class Login_Activity extends AppCompatActivity {
 
                 }
 
+            }
+        });
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fp = new Intent(Login_Activity.this,ResetPassword.class);
+                startActivity(fp);
             }
         });
 

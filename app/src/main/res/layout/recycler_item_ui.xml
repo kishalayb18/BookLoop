@@ -3,19 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="6dp"
+    android:layout_margin="10dp"
     app:cardBackgroundColor="#D3C7EA"
     app:cardCornerRadius="9dp"
-    app:cardElevation="5dp"
+    app:cardElevation="7dp"
     android:id="@+id/ui_card">
 
 
     <LinearLayout
 
-        android:layout_width="382dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="6dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="6dp">
 
         <TextView
             android:id="@+id/ui_book_name"
@@ -49,25 +49,6 @@
             android:text="Seller Name"
             android:textColor="@color/black"
             android:textSize="15dp" />
-
-
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:orientation="horizontal">-->
-
-        <!--            &lt;!&ndash;wishlist menu-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/addtofavourites"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_gravity="center_vertical"-->
-        <!--                android:layout_weight="1"-->
-        <!--                android:drawableRight="@drawable/fav_unmarked"-->
-        <!--                android:padding="20dp"/>-->
-        <!--                &ndash;&gt;-->
-
-        <!--        </LinearLayout>-->
 
 
     </LinearLayout>

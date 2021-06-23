@@ -11,18 +11,16 @@
         android:roundIcon="@mipmap/app_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookLoop">
-        <activity android:name=".EditBookDetails"></activity>
+        <activity android:name=".ResetPassword" android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"></activity>
+        <activity android:name=".EditBookDetails" />
         <activity android:name=".MyUploads" />
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".BookDetails" />
-        <activity android:name=".EditProfileActivity" />
-        <activity android:name=".UserProfileActivity" />
-        <activity android:name=".Myprofile" />
         <activity android:name=".Upload_NewBook" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".SignUpActivity" android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"/>
         <activity android:name=".MainActivity" />
-        <activity android:name=".Login_Activity" />
-        <activity android:name=".Splash">
+        <activity android:name=".Login_Activity" android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"/>
+        <activity android:name=".Splash" android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
