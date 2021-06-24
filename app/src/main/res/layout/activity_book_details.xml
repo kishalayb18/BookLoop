@@ -27,7 +27,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="30dp"
-            android:fontFamily="@font/alice"/>
+            android:fontFamily="@font/open_sans_condensed_bold"/>
 
     </LinearLayout>
     <View

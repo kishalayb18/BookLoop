@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:fontFamily="@font/alice"
+            android:fontFamily="@font/open_sans_condensed_bold"
             android:text="@string/login"
             android:textSize="30dp"
             android:textStyle="bold"
@@ -100,7 +100,7 @@
         app:cornerRadius="36dp"
         android:backgroundTint="@color/blue"
         android:text="@string/login"
-        android:fontFamily="@font/open_sans"/>
+        android:fontFamily="@font/oxygen"/>
 
 
     -<LinearLayout
@@ -116,7 +116,8 @@
         android:text="@string/signup"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:fontFamily="@font/open_sans"/>
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/black"/>
 
 </LinearLayout>
 

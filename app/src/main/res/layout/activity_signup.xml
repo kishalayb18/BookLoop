@@ -24,7 +24,7 @@
         android:layout_width="148dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:fontFamily="@font/alice"
+        android:fontFamily="@font/open_sans_condensed_bold"
         android:text="@string/signup_heading"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -149,7 +149,7 @@
         android:layout_marginStart="60dp"
         app:cornerRadius="36dp"
         android:backgroundTint="@color/blue"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/oxygen"
         android:text="@string/signup_new" />
 
         <TextView

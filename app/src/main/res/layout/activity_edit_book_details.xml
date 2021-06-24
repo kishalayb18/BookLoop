@@ -24,7 +24,7 @@
             android:layout_width="313dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/alice"
+            android:fontFamily="@font/open_sans_condensed_bold"
             android:text="@string/edit_myupload"
             android:textColor="@color/black"
             android:layout_marginBottom="5dp"
@@ -192,7 +192,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Update"
-            android:fontFamily="@font/open_sans"/>
+            android:fontFamily="@font/oxygen"/>
     </LinearLayout>
 
 </LinearLayout>

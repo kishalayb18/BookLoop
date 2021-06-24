@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
-        android:fontFamily="@font/alice"
+        android:fontFamily="@font/open_sans_condensed_bold"
         android:text="@string/upload_new_book"
         android:textColor="@color/black"
         android:textSize="30dp"
@@ -150,7 +150,7 @@
         android:layout_gravity="center"
         android:text="UPLOAD"
         android:background="@drawable/btn_shape1"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/oxygen"
         />
 
 </LinearLayout>
