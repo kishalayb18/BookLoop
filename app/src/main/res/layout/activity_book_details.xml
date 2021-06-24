@@ -8,32 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="25dp"
     tools:context=".BookDetails">
-
-    <LinearLayout
-        android:id="@+id/layout_book_details_heading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="20dp">
-
-        <TextView
-            android:id="@+id/book_details_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BOOK DETAILS "
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            android:fontFamily="@font/open_sans_condensed_bold"/>
-
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
 
     <LinearLayout
         android:id="@+id/layout_bookdetails"
@@ -44,6 +19,31 @@
         android:orientation="vertical"
         android:layout_margin="20dp"
         android:padding="20dp">
+
+        <LinearLayout
+            android:id="@+id/layout_book_details_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/book_details_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Book Details "
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:fontFamily="@font/open_sans_condensed_bold"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/darker_gray"/>
 
         <LinearLayout
             android:id="@+id/layout_show_book_name"
@@ -218,6 +218,30 @@
         android:layout_margin="20dp"
         android:padding="20dp">
 
+        <LinearLayout
+            android:id="@+id/layout_seller_details_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/seller_details_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seller Details "
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:fontFamily="@font/open_sans_condensed_bold"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
     <LinearLayout
         android:id="@+id/layout_show_seller_name"
         android:layout_width="match_parent"
@@ -299,10 +323,6 @@
 
     </LinearLayout>
 </LinearLayout>
-    <!--Book details end-->
-
-
-
 
 </LinearLayout>
 </ScrollView>
