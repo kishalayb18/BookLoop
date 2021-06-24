@@ -3,6 +3,7 @@ package com.mypackage.bookloop;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,7 +47,7 @@ public class MyProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myprofile);
 
-        getSupportActionBar().setTitle("BookLoop");
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"#45adda\">" + "Book" + "</font>"+"<font color=\"#ffffff\">" + "Loop" + "</font>"));
         session=new LocalSession(MyProfileActivity.this);
         layName = findViewById(R.id.lay_name);
         layPhone = findViewById(R.id.lay_phone);

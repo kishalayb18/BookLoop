@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/app_name"
-        android:src="@mipmap/app_launcher"
+        android:src="@mipmap/bookloop_logo_foreground"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-60dp" />
 

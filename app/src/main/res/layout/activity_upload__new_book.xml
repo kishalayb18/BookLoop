@@ -14,14 +14,14 @@
 
     <TextView
         android:id="@+id/txt_user"
-        android:layout_width="313dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/alice"
         android:text="@string/upload_new_book"
         android:textColor="@color/black"
-        android:textSize="35dp"
+        android:textSize="30dp"
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -149,7 +149,6 @@
         android:layout_marginTop="18dp"
         android:layout_gravity="center"
         android:text="UPLOAD"
-        android:backgroundTint="#fece2f"
         android:background="@drawable/btn_shape1"
         android:fontFamily="@font/open_sans"
         />
