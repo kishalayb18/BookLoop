@@ -27,7 +27,8 @@
             android:text="BOOK DETAILS "
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:fontFamily="@font/alice"/>
 
     </LinearLayout>
 

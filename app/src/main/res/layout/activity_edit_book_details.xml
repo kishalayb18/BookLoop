@@ -24,7 +24,7 @@
             android:layout_width="313dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/alice"
             android:text="@string/edit_myupload"
             android:textColor="@color/black"
             android:layout_marginBottom="5dp"
@@ -45,7 +45,8 @@
                 android:hint="Book Name"
                 android:inputType="textAutoCorrect"
                 android:id="@+id/inp_bE_book_name"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -62,7 +63,8 @@
                 android:hint="Author Name"
                 android:inputType="textAutoCorrect"
                 android:id="@+id/inp_author_book_name"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -79,7 +81,8 @@
                 android:hint="Publisher Name"
                 android:inputType="textAutoCorrect"
                 android:id="@+id/inp_bE_publisher_name"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -96,7 +99,8 @@
                 android:hint="Class/Sem"
                 android:inputType="textAutoCorrect"
                 android:id="@+id/inp_bE_sem"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -113,7 +117,8 @@
                 android:hint="Book Description"
                 android:inputType="textAutoCorrect"
                 android:id="@+id/inp_bE_book_description"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -130,7 +135,8 @@
                 android:hint="Book Price"
                 android:inputType="number"
                 android:id="@+id/inp_bE_book_price"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -147,7 +153,8 @@
                 android:hint="Seller Name"
                 android:inputType="textAutoCorrect"
                 android:id="@+id/inp_bE_seller_name"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -164,7 +171,8 @@
                 android:hint="Seller Contact"
                 android:inputType="number"
                 android:id="@+id/inp_bE_seller_phone"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -183,7 +191,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Update" />
+            android:text="Update"
+            android:fontFamily="@font/open_sans"/>
     </LinearLayout>
 
 </LinearLayout>

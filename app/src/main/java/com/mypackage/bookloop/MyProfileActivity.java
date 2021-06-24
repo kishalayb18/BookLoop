@@ -45,6 +45,8 @@ public class MyProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myprofile);
+
+        getSupportActionBar().setTitle("BookLoop");
         session=new LocalSession(MyProfileActivity.this);
         layName = findViewById(R.id.lay_name);
         layPhone = findViewById(R.id.lay_phone);

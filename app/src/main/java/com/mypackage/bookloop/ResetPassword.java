@@ -27,6 +27,7 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_reset_password);
+        getSupportActionBar().setTitle("BookLoop");
         inputEmail = (EditText) findViewById(R.id.email);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
         lay_forgotPass = findViewById(R.id.forgotpass_ip_layout);

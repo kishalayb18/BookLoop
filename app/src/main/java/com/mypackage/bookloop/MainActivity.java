@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("HOME");
+        getSupportActionBar().setTitle("BookLoop");
 
         auth=FirebaseAuth.getInstance();
 

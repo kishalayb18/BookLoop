@@ -36,7 +36,7 @@ public class MyUploads extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_uploads);
-        getSupportActionBar().setTitle("MY UPLOADS");
+        getSupportActionBar().setTitle("BookLoop");
 
         user=FirebaseAuth.getInstance().getCurrentUser();
         String myEmail= user.getEmail();

@@ -26,7 +26,8 @@
             android:drawableStart="@drawable/book"
             android:text=" Book Name"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/open_sans"/>
 
         <TextView
             android:id="@+id/ui_book_price"
@@ -37,7 +38,8 @@
             android:drawableStart="@drawable/price"
             android:text="Rs."
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="@font/open_sans"/>
 
         <TextView
             android:id="@+id/ui_seller_details"
@@ -48,7 +50,8 @@
             android:drawableStart="@drawable/ic_user_"
             android:text="Seller Name"
             android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:fontFamily="@font/open_sans"/>
 
 
     </LinearLayout>

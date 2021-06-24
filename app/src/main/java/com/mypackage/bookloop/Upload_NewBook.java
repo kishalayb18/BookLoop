@@ -46,7 +46,7 @@ public class Upload_NewBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload__new_book);
 
-        getSupportActionBar().setTitle("UPLOAD NEW BOOK");
+        getSupportActionBar().setTitle("BookLoop");
 
         db=FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();

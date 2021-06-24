@@ -21,18 +21,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/alice"
             android:text="@string/login"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:fontFamily="@font/poppins"
             android:text="Welcome back! Please login to your account."
             android:textSize="13dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/black"/>
 
 
     -<com.google.android.material.textfield.TextInputLayout
@@ -41,7 +43,7 @@
     android:layout_width="match_parent"
     app:startIconDrawable="@drawable/ic_user_"
     android:textColor="@color/black"
-    android:hint="@string/enter_the_username"
+    android:hint="@string/enter_registered_email"
     android:layout_marginVertical="10dp">
 
     <com.google.android.material.textfield.TextInputEditText
@@ -49,7 +51,8 @@
         android:layout_width="match_parent"
         android:id="@+id/edit_user"
         android:layout_marginVertical="10dp"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress"
+        android:fontFamily="@font/open_sans"/>
 
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +72,8 @@
         android:layout_width="match_parent"
         android:id="@+id/edit_password"
         android:layout_marginVertical="10dp"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:fontFamily="@font/open_sans"/>
 
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +86,8 @@
          android:textAlignment="viewEnd"
          android:textStyle="bold"
             android:layout_marginVertical="10dp"
-            android:inputType="text"/>
+            android:inputType="text"
+         android:fontFamily="@font/open_sans"/>
 
     <Button
         android:id="@+id/login_btn"
@@ -90,7 +95,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:background="@drawable/btn_shape1"
-        android:text="@string/login" />
+        android:text="@string/login"
+        android:fontFamily="@font/open_sans"/>
 
 
     -<LinearLayout
@@ -105,7 +111,8 @@
         android:layout_gravity="center"
         android:text="@string/signup"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/open_sans"/>
 
 </LinearLayout>
 

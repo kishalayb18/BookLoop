@@ -66,7 +66,7 @@ public class BookDetails extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //define the menu file
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.without_search_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -76,21 +76,22 @@ public class BookDetails extends AppCompatActivity {
         switch(item.getItemId()) //allow us to use the id against the menu itself
         {
 
-            case R.id.Logout:
+            case R.id.Logout_without_search:
                 logout();
                 break;
-            case  R.id.home_menu:
+            case  R.id.home_menu_without_search:
                 Intent hm = new Intent(BookDetails.this, MainActivity.class);
                 startActivity(hm);
                 break;
-            case R.id.MyProfile:
+            case R.id.MyProfile_without_search:
                 Intent mp = new Intent(BookDetails.this, MyProfileActivity.class);
                 startActivity(mp);
                 break;
-            case R.id.MyUploads:
-                Toast.makeText(BookDetails.this,"My Uploads", Toast.LENGTH_SHORT).show();
+            case R.id.MyUploads_without_search:
+                Intent bdmu = new Intent(BookDetails.this, MyUploads.class);
+                startActivity(bdmu);
                 break;
-            case R.id.Upload_new_book:
+            case R.id.Upload_new_book_without_search:
                 Intent upl = new Intent(BookDetails.this, Upload_NewBook.class);
                 startActivity(upl);//message passing object
                 break;

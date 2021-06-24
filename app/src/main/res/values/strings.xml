@@ -31,4 +31,5 @@
     <string name="forgot_password_msg">Reset Password</string>
     <string name="resetPassword">Reset Password</string>
     <string name="signup_heading">SignUp</string>
+    <string name="enter_registered_email">Enter Registered Email</string>
 </resources>
