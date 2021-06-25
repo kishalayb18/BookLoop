@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -157,6 +159,7 @@ public class EditBookDetails extends AppCompatActivity {
                         Toast.makeText(EditBookDetails.this, "Updated", Toast.LENGTH_SHORT).show();
                         Intent r=new Intent(EditBookDetails.this,MyUploads.class);
                         startActivity(r);
+                        EditBookDetails.this.finish();
 
                     }
                     else {
@@ -165,6 +168,76 @@ public class EditBookDetails extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //define the menu file
+        getMenuInflater().inflate(R.menu.without_search_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    /**
+     * method to generate event against the menu
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) //allow us to use the id against the menu itself
+        {
+            case R.id.Logout_without_search:
+                logout();
+                break;
+
+            case R.id.home_menu_without_search:
+                Intent hm = new Intent(EditBookDetails.this, MainActivity.class);
+                startActivity(hm);
+                break;
+
+            case R.id.MyProfile_without_search:
+                Intent mp = new Intent(EditBookDetails.this, MyProfileActivity.class);
+                startActivity(mp);
+                break;
+
+            case R.id.Upload_new_book_without_search:
+                Intent upl = new Intent(EditBookDetails.this, Upload_NewBook.class);
+                startActivity(upl);//message passing object
+                break;
+
+            case R.id.MyUploads_without_search:
+                Intent myp = new Intent(EditBookDetails.this, MyUploads.class);
+                startActivity(myp);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(EditBookDetails.this);
+        alertBuilder.setTitle("Exit message");
+        alertBuilder.setMessage("Confirm to exit");
+
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //cancel operation
+                Toast.makeText(EditBookDetails.this,"Operation suspended", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        alertBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                LocalSession localSession = new LocalSession(EditBookDetails.this);
+                localSession.clearAll();
+                Intent r = new Intent(EditBookDetails.this, Login_Activity.class);
+                startActivity(r);//message passing object
+                Toast.makeText(EditBookDetails.this,"Logout successful", Toast.LENGTH_SHORT).show();
+                EditBookDetails.this.finish();
+            }
+        });
+        alertBuilder.setCancelable(false); //auto cancel suspended
+        alertBuilder.show();
     }
 
 }

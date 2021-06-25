@@ -107,6 +107,9 @@ public class MyProfileActivity extends AppCompatActivity {
         else if(phone.isEmpty()){
             layPhone.setError("Can't be empty");
         }
+        else if(phone.length()!=10){
+            layPhone.setError("Enter 10 digits valid phone number");
+        }
         else {
             reference.child(uid).updateChildren(userJson, new DatabaseReference.CompletionListener() {
                 @Override

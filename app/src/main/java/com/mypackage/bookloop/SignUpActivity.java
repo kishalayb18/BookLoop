@@ -82,6 +82,9 @@ public class SignUpActivity extends AppCompatActivity {
             else if(phn.isEmpty()){
                 layPhn.setError("Can't be empty");
             }
+            else if(phn.length()!=10){
+                layPhn.setError("Enter 10 digits valid phone number");
+            }
             else if (pass.isEmpty())
             {
                 layPwd.setError("Can't be empty");
