@@ -25,7 +25,7 @@
             android:layout_margin="6dp"
             android:drawableStart="@drawable/book"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:fontFamily="@font/open_sans"/>
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_margin="6dp"
             android:drawableStart="@drawable/price"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:fontFamily="@font/open_sans"/>
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_margin="6dp"
             android:drawableStart="@drawable/ic_user_"
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="15dp"
             android:fontFamily="@font/open_sans"/>
 
 

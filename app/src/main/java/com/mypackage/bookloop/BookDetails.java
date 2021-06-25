@@ -30,23 +30,31 @@ public class BookDetails extends AppCompatActivity {
 
         String authorName=getIntent().getStringExtra(ConstantKeys.KEY_AUTHOR_NAME);
         showAuthorName=findViewById(R.id.show_author_name);
-        showAuthorName.setText(authorName);
+        showAuthorName.setText("Author Name: "+authorName);
 
         String publisherName=getIntent().getStringExtra(ConstantKeys.KEY_PUBLISHER_NAME);
+        if(publisherName.isEmpty())
+        {
+            publisherName="Not Available";
+        }
         showPublisherName=findViewById(R.id.show_publisher_name);
-        showPublisherName.setText(publisherName);
+        showPublisherName.setText("Publisher Name: "+publisherName);
 
         String sem=getIntent().getStringExtra(ConstantKeys.KEY_SEM);
         showSem=findViewById(R.id.show_sem);
-        showSem.setText(sem);
+        showSem.setText("Class/Sem: "+sem);
 
         String bookDescription=getIntent().getStringExtra(ConstantKeys.KEY_BOOK_DESCRIPTION);
+        if(bookDescription.isEmpty())
+        {
+            bookDescription="Not Available";
+        }
         showBookDescription=findViewById(R.id.show_book_description);
-        showBookDescription.setText(bookDescription);
+        showBookDescription.setText("Description: "+bookDescription);
 
         String bookPrice=getIntent().getStringExtra(ConstantKeys.KEY_BOOK_PRICE);
         showBookPrice=findViewById(R.id.show_book_price);
-        showBookPrice.setText(bookPrice);
+        showBookPrice.setText("Price: "+bookPrice);
 
         String sellerName=getIntent().getStringExtra(ConstantKeys.KEY_SELLER_NAME);
         showSellerName=findViewById(R.id.show_seller_name);

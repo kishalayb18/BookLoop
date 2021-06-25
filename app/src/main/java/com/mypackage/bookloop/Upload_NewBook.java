@@ -79,6 +79,10 @@ public class Upload_NewBook extends AppCompatActivity {
             String publisherName=publisherEdit.getText().toString();
             String sem=semEdit.getText().toString().trim();
             String description=descripEdit.getText().toString().trim();
+//            if(description.isEmpty())
+//            {
+//                description="Not available";
+//            }
             String price=priceEdit.getText().toString().trim();
 
             ref=db.getReference("BLUserAccount").getRef().child(mAuth.getCurrentUser().getUid());
@@ -144,14 +148,8 @@ public class Upload_NewBook extends AppCompatActivity {
         else if(authorName.isEmpty()){
             authorInpt.setError("Can't be empty");
         }
-        else if(publisherName.isEmpty()){
-            publisherInpt.setError("Can't be empty");
-        }
         else if(sem.isEmpty()){
             semInpt.setError("Can't be empty");
-        }
-        else if(description.isEmpty()){
-            descripInpt.setError("Can't be empty");
         }
         else if(price.isEmpty()){
             priceInpt.setError("Can't be empty");

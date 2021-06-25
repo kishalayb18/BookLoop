@@ -93,7 +93,8 @@ public class MyProfileActivity extends AppCompatActivity {
     private void updateProfile() {
 
         Map<String , Object> userJson=new HashMap<>();
-        name = edit_name.getText().toString();
+        name = edit_name.getText().toString().trim();
+        phone=edit_phone.getText().toString().trim();
         userJson.put(ConstantKeys.KEY_NAME, name);
         userJson.put(ConstantKeys.KEY_PHONE, phone);
 

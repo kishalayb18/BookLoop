@@ -18,7 +18,7 @@
         android:background="#cfebfd"
         android:orientation="vertical"
         android:layout_margin="20dp"
-        android:padding="20dp">
+        android:padding="10dp">
 
         <LinearLayout
             android:id="@+id/layout_book_details_heading"
@@ -34,9 +34,8 @@
                 android:layout_height="wrap_content"
                 android:text="Book Details "
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="30dp"
-                android:fontFamily="@font/open_sans_condensed_bold"/>
+                android:fontFamily="@font/oxygen"/>
 
         </LinearLayout>
         <View
@@ -57,7 +56,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/book"
-                android:text="  Book Name:  "
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -66,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -84,7 +83,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_user_"
-                android:text="  Author Name: "
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -93,6 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -111,7 +110,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/publish"
-                android:text="  Publisher Name: "
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -120,6 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -138,7 +137,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/clas"
-                android:text="  Class/Sem: "
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
@@ -148,6 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -166,7 +165,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/info"
-                android:text=" Description: "
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -175,6 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -193,7 +192,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/price"
-                android:text=" Price: "
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -202,6 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -216,7 +215,7 @@
         android:gravity="center"
         android:background="#cfebfd"
         android:layout_margin="20dp"
-        android:padding="20dp">
+        android:padding="10dp">
 
         <LinearLayout
             android:id="@+id/layout_seller_details_heading"
@@ -232,9 +231,8 @@
                 android:layout_height="wrap_content"
                 android:text="Seller Details "
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="30dp"
-                android:fontFamily="@font/open_sans_condensed_bold"/>
+                android:fontFamily="@font/oxygen"/>
 
         </LinearLayout>
         <View
@@ -254,7 +252,7 @@
             android:id="@+id/lable_seller_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Seller Name: "
+
             android:drawableLeft="@drawable/ic_user_"
             android:textColor="@color/black"
             android:textSize="18dp" />
@@ -281,7 +279,6 @@
             android:id="@+id/lable_seller_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Seller Contact: "
             android:drawableLeft="@drawable/ic_phone"
             android:textColor="@color/black"
             android:textSize="18dp" />
@@ -308,7 +305,6 @@
         android:id="@+id/lable_seller_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Seller Email: "
         android:drawableLeft="@drawable/ic_email_"
         android:textColor="@color/black"
         android:textSize="18dp" />

@@ -21,10 +21,10 @@
 
     <TextView
         android:id="@+id/signUp_heading"
-        android:layout_width="148dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:fontFamily="@font/open_sans_condensed_bold"
+        android:fontFamily="@font/oxygen"
         android:text="@string/signup_heading"
         android:textSize="30dp"
         android:textStyle="bold"

@@ -104,23 +104,17 @@ public class Login_Activity extends AppCompatActivity {
                         {
                             //EMAIL IS VERIFIED
 
-
-
-                            /**
-                             * NEED TO WRITE CODE FOR ADDING DATA IN SHARED PREFERENCE
-                             */
                             String uid=auth.getCurrentUser().getUid();  //add it to shared preference
                             session.saveInfo(uid);
                             Intent r=new Intent(Login_Activity.this,MainActivity.class);
                             startActivity(r);
                             Login_Activity.this.finish();
-
-                            //WRITE CODE TO NAV TO THE NEXT SCREEN
                         }
                         else
                         {
                             //EMAIL IS NOT VERIFIED
-                            Toast.makeText(this,"VERIFY YOUR MAIL",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this,"EMAIL IS NOT VERIFIED, SIGNUP AGAIN.",Toast.LENGTH_SHORT).show();
+                            auth.getCurrentUser().delete();
                         }
 
                     }

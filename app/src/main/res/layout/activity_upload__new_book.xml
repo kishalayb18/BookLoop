@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
-        android:fontFamily="@font/open_sans_condensed_bold"
+        android:fontFamily="@font/oxygen_light"
         android:text="@string/upload_new_book"
         android:textColor="@color/black"
         android:textSize="30dp"

@@ -65,7 +65,7 @@ public class MyUploadsAdapter extends RecyclerView.Adapter<MyUploadsAdapter.MyUp
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(mContext,"Edit clicked",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext,"Edit clicked",Toast.LENGTH_SHORT).show();
                 /**
                  * CODE TO EDIT BOOK DETAILS SHOULD BE ADDED!
                  */

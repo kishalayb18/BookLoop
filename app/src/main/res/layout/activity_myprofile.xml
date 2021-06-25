@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:fontFamily="@font/open_sans_condensed_bold"
+            android:fontFamily="@font/oxygen_light"
             android:text="@string/my_profile"
             android:textAlignment="center"
             android:textColor="@color/black"

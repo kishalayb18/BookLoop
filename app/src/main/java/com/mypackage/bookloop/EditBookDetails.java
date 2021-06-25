@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -40,6 +41,8 @@ public class EditBookDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book_details);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"#45adda\">" + "Book" + "</font>"+"<font color=\"#ffffff\">" + "Loop" + "</font>"));
+
         session=new LocalSession(EditBookDetails.this);
 
         reference = FirebaseDatabase.getInstance().getReference("UploadedBooks");
@@ -67,6 +70,7 @@ public class EditBookDetails extends AppCompatActivity {
         editBookSellerPhone=findViewById(R.id.inp_bE_seller_phone);
 
 
+        //GET TEXT
         authorName = getIntent().getStringExtra(ConstantKeys.KEY_AUTHOR_NAME);
         bookDescription = getIntent().getStringExtra(ConstantKeys.KEY_BOOK_DESCRIPTION);
         bookId = getIntent().getStringExtra(ConstantKeys.KEY_BOOK_ID);
@@ -77,6 +81,7 @@ public class EditBookDetails extends AppCompatActivity {
         bookSellerPhone = getIntent().getStringExtra(ConstantKeys.KEY_SELLER_PHONE);
         bookSem = getIntent().getStringExtra(ConstantKeys.KEY_SEM);
 
+        //SET TEXT
         editBookName.setText(bookName);
         editAuthorName.setText(authorName);
         editPublisherName.setText(publisherName);
@@ -132,14 +137,8 @@ public class EditBookDetails extends AppCompatActivity {
         else if(authorName.isEmpty()){
             layAuthorName.setError("Can't be empty");
         }
-        else if(publisherName.isEmpty()){
-            layPublisherName.setError("Can't be empty");
-        }
         else if(bookSem.isEmpty()){
             layBookSem.setError("Can't be empty");
-        }
-        else if(bookDescription.isEmpty()){
-            layBookDescription.setError("Can't be empty");
         }
         else if(bookPrice.isEmpty()){
             layBookPrice.setError("Can't be empty");
@@ -156,8 +155,11 @@ public class EditBookDetails extends AppCompatActivity {
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                     if (error == null) {
                         Toast.makeText(EditBookDetails.this, "Updated", Toast.LENGTH_SHORT).show();
+                        Intent r=new Intent(EditBookDetails.this,MyUploads.class);
+                        startActivity(r);
 
-                    } else {
+                    }
+                    else {
                         Toast.makeText(EditBookDetails.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }

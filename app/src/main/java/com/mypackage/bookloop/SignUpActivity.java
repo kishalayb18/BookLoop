@@ -147,6 +147,7 @@ public class SignUpActivity extends AppCompatActivity {
                         //NAVIGATING SIGNUP TO LOGIN AFTER SUCCESSFUL REGISTRATION
                         Intent r=new Intent(SignUpActivity.this, Login_Activity.class);
                         startActivity(r);
+                        SignUpActivity.this.finish();
                     }
                     else {
                         Toast.makeText(this,"Registration Failed",Toast.LENGTH_SHORT).show();
