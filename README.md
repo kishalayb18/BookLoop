@@ -20,3 +20,5 @@ It is an Android-based project using XML as the frontend, Java as the backend la
 
 ### Mentor
 MR SOHAM LODH
+
+### Thanks for checking our project
