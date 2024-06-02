@@ -3,13 +3,13 @@
 
 
 ### Description
-It is an Android based project using XML as the frontend, Java as the backend language and Google Firebase Realtime Database as the database. Purpose of this project is to bridge the communication gap between used books' buyers and sellers.
+It is an Android-based project using XML as the frontend, Java as the backend language and Google Firebase Realtime Database as the database. This project aims to bridge the communication gap between used books buyers and sellers.
 
 ### Technology Stack
 - Frontend XML
 - Backend Android using JAVA
 - Database GCP Firebase
-- Tool androidStudio
+- Tool android studio
 
 
 ### Contributors 
